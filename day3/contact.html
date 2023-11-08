@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="contact.css" />
+    <title>Contact Me</title>
+  </head>
+  <body>
+    <nav>
+      <div class="main-navbar">
+        <div class="nav-list">
+          <img src="img/dumbways-logo.png" alt="logo dumbways" />
+          <a href="index.html">Home</a>
+          <a href="#">My Project</a>
+        </div>
+        <div class="btn-contact">
+          <a href="contact.html" class="btn-navbar">Contact Me</a>
+        </div>
+      </div>
+    </nav>
+
+    <div class="component-form">
+      <div class="container">
+        <div class="title">
+          <h1>GET IN TOUCH</h1>
+        </div>
+
+        <form class="form">
+          <label>Nama</label>
+          <input type="text" class="input-form" id="inputName" />
+
+          <label>Email</label>
+          <input type="email" class="input-form" id="inputEmail" />
+
+          <label>Phone Number</label>
+          <input type="text" class="input-form" id="inputPhone" />
+
+          <label>Subject</label>
+          <select class="input-form" id="inputSubject">
+            <option value=""></option>
+            <option value="Frontend Developer">Frontend Developer</option>
+            <option value="Backend Developer">Backend Developer</option>
+            <option value="Fullstack Developer">Fullstack Developer</option>
+          </select>
+
+          <label>Your Message</label>
+          <textarea cols="30" rows="10" class="input-form" placeholder="Write your message here..." id="inputMessage"></textarea>
+        </form>
+
+        <div class="btn-submit">
+          <button onclick="dataForm()">Submit</button>
+        </div>
+      </div>
+    </div>
+
+    <script src="contact.js"></script>
+  </body>
+</html>
