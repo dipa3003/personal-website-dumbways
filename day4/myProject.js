@@ -27,11 +27,13 @@ function submitData(event) {
   //     }
   // }
 
-  const html = document.querySelector("#html");
-  const css = document.querySelector("#css");
-  const js = document.querySelector("#js");
-  const react = document.querySelector("#react").value;
+  const html = document.querySelector("#html").checked;
+  const css = document.querySelector("#css").checked;
+  const js = document.querySelector("#js").checked;
+  const react = document.querySelector("#react").checked;
   let image = document.querySelector("#image").files;
+
+  // const logos = document.querySelector();
 
   image = URL.createObjectURL(image[0]);
 
@@ -77,10 +79,10 @@ function showCards(data) {
                 <p>${data.description}</p>
             </div>
             <div class="logo">
-                <img src="icons/html.png" class="html" />
-                <img src="icons/css.png" />
-                <img src="icons/js.png" />
-                <img src="icons/react.png" />
+                <img src="icons/html.png" hidden="${!data.html}" />
+                <img src="icons/css.png" hidden="${!data.css}" />
+                <img src="icons/js.png" hidden="${!data.js}"/>
+                <img src="icons/react.png" hidden="${!data.react}" />
             </div>
             <div class="btn-card">
                 <button>Edit</button>
