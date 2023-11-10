@@ -1,31 +1,13 @@
 let projects = [];
 
-// function checkedHtml(){
-//     const img1 = document.querySelector('.html')
-//     img1.style.display =
-// }
-
 // FUNCTION GET DATA
 function submitData(event) {
   event.preventDefault();
 
   const inputName = document.querySelector("#inputName").value;
-  const inputDateStart = document.querySelector("#inputDateStart").value;
-  const inputDateEnd = document.querySelector("#inputDateEnd").value;
+  let inputDateStart = document.querySelector("#inputDateStart").value;
+  let inputDateEnd = document.querySelector("#inputDateEnd").value;
   const inputDescription = document.querySelector("#inputDescription").value;
-
-  //   let css = document.querySelector("#css").value;
-
-  //   let js = document.querySelector("#js").value;
-
-  //   let react = document.querySelector("#react").value;
-  // const technologies = document.getElementsByName('tech')
-  // let techs= []
-  // for(let i = 0; i < technologies.length; i++){
-  //     if (technologies[i].checked){
-  //         techs.push(technologies[i].value)
-  //     }
-  // }
 
   const html = document.querySelector("#html").checked;
   const css = document.querySelector("#css").checked;
@@ -33,9 +15,20 @@ function submitData(event) {
   const react = document.querySelector("#react").checked;
   let image = document.querySelector("#image").files;
 
-  // const logos = document.querySelector();
-
   image = URL.createObjectURL(image[0]);
+
+  let start = Date.parse(inputDateStart);
+  let end = Date.parse(inputDateEnd);
+  let durasi = end - start;
+
+  let day = Math.floor(durasi / 1000 / 60 / 60 / 24);
+  let month = Math.floor(day / 30);
+  let year = Math.floor(month / 12);
+
+  console.log("date start:", start, "date End:", end);
+  console.log("durasi: ", durasi);
+  console.log("day: ", day);
+  console.log("month: ", month);
 
   const inputData = {
     name: inputName,
@@ -47,6 +40,9 @@ function submitData(event) {
     js,
     react,
     image,
+    day,
+    month,
+    year,
   };
 
   projects.push(inputData);
@@ -65,6 +61,12 @@ function loopProjects(projects) {
   containerCards.innerHTML = projectCards;
 }
 
+// FUNCTION SHOW-DETAIL-CARD
+function showDetail() {
+  const titleCard = document.querySelector(".project-title");
+  titleCard.addEventListener("click", () => {});
+}
+
 // FUNCTION SHOW-CARD-HTML
 function showCards(data) {
   return `<div class="card">
@@ -72,17 +74,17 @@ function showCards(data) {
                 <img src="${data.image}" alt="" />
             </div>
             <div class="project-title">
-                <h3>${data.name}</h3>
-                 <p>durasi: 4 bulan</p>
+            <a href="detailProject.html"><h3>${data.name}</h3></a>
+                ${data.year > 0 ? `<p>durasi: ${data.year} tahun</p>` : data.month > 0 ? `<p>durasi: ${data.month} bulan</p>` : `<p>durasi: ${data.day} hari</p>`}
             </div>
             <div class="content">
                 <p>${data.description}</p>
             </div>
             <div class="logo">
-                <img src="icons/html.png" hidden="${!data.html}" />
-                <img src="icons/css.png" hidden="${!data.css}" />
-                <img src="icons/js.png" hidden="${!data.js}"/>
-                <img src="icons/react.png" hidden="${!data.react}" />
+              ${data.html ? ` <i class="fa-brands fa-html5 fa-2xl"></i>` : ""}
+              ${data.css ? ` <i class="fa-brands fa-css3-alt fa-2xl"></i>` : ""}
+              ${data.js ? ` <i class="fa-brands fa-js fa-2xl"></i>` : ""}
+              ${data.react ? ` <i class="fa-brands fa-react fa-2xl"></i>` : ""}
             </div>
             <div class="btn-card">
                 <button>Edit</button>

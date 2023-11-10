@@ -68,6 +68,7 @@ nav {
 .component-form {
   display: flex;
   justify-content: center;
+  margin-bottom: 10px;
 }
 .container {
   width: 500px;
@@ -79,6 +80,7 @@ nav {
   justify-content: center;
   margin-bottom: 20px;
   margin-top: 50px;
+  padding-top: 20px;
 }
 .form {
   display: flex;
@@ -180,14 +182,18 @@ label {
   flex-direction: row;
   /* justify-content: center; */
   gap: 10px;
+  margin: 30px 0;
 }
 .logo img {
   /* background-color: red; */
   width: 30px;
 }
+.project-title a {
+  text-decoration: none;
+  color: black;
+}
 .project-title,
-.content,
-.logo {
+.content {
   margin-bottom: 10px;
 }
 .btn-card {
@@ -198,4 +204,63 @@ label {
   padding: 5px 52px;
   border-radius: 10px;
   cursor: pointer;
+  background-color: black;
+  color: white;
+}
+.btn-card button:hover {
+  color: white;
+  background-color: orangered;
+}
+
+/* Style Detail-Project */
+.container-detail {
+  display: flex;
+  flex-direction: column;
+  margin: 50px 70px;
+}
+.project-title {
+  /* height: 300px; */
+  background-color: pink;
+  border: 2px solid black;
+  text-align: center;
+}
+
+.detail-title {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  height: 300px;
+  background-color: green;
+  border: 2px solid black;
+}
+.project-image {
+  width: 40%;
+  height: 100%;
+  background-color: blue;
+  border: 2px solid black;
+}
+.project-image img {
+  width: 100%;
+  height: 100%;
+}
+.project-desc {
+  width: 40%;
+  height: 100%;
+  background-color: violet;
+  border: 2px solid black;
+}
+.project-tech-icons {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  width: 60%;
+}
+.project-tech-icons i {
+  width: 5px;
+}
+
+.detail-content {
+  background-color: yellow;
+  border: 2px solid black;
 }
