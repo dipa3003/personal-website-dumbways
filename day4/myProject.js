@@ -61,12 +61,6 @@ function loopProjects(projects) {
   containerCards.innerHTML = projectCards;
 }
 
-// FUNCTION SHOW-DETAIL-CARD
-// function showDetail() {
-//   const titleCard = document.querySelector(".project-title");
-//   titleCard.addEventListener("click", () => {});
-// }
-
 // FUNCTION SHOW-CARD-HTML
 function showCards(data) {
   return `<div class="card">
