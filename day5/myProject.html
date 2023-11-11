@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="myProject.css" />
+    <title>My Project</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
+      integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+  </head>
+  <body>
+    <nav>
+      <div class="main-navbar">
+        <div class="nav-list">
+          <img src="img/dumbways-logo.png" alt="logo dumbways" />
+          <a href="index.html">Home</a>
+          <a href="myProject.html">My Project</a>
+        </div>
+        <div class="btn-contact">
+          <a href="contact.html" class="btn-navbar">Contact Me</a>
+        </div>
+      </div>
+    </nav>
+
+    <div class="component-form">
+      <div class="container">
+        <div class="title">
+          <h1>ADD MY PROJECT</h1>
+        </div>
+
+        <form class="form" onsubmit="submitData(event)">
+          <label for="inputName">Project Name</label>
+          <input type="text" class="input-form" id="inputName" />
+
+          <div class="container-date">
+            <div class="date-kanan">
+              <label for="inputDateStart">Start Date</label>
+              <input type="date" class="input-form" id="inputDateStart" />
+            </div>
+            <div class="date-kiri">
+              <label for="inputDateEnd">End Date</label>
+              <input type="date" class="input-form" id="inputDateEnd" />
+            </div>
+          </div>
+
+          <label for="inputDescription">Description</label>
+          <textarea cols="30" rows="10" class="input-form" placeholder="Write your description here..." id="inputDescription"></textarea>
+
+          <label>Technologies</label>
+          <div class="container-tech">
+            <div class="kanan">
+              <input type="checkbox" name="tech" id="html" value="html" />
+              <label for="html">HTML</label>
+
+              <input type="checkbox" name="tech" id="css" value="css" />
+              <label for="css">CSS</label>
+            </div>
+            <div class="kiri">
+              <input type="checkbox" name="tech" id="react" value="react" />
+              <label for="react">React JS</label>
+
+              <input type="checkbox" name="tech" id="js" value="js" />
+              <label for="js">JavaScript</label>
+            </div>
+          </div>
+
+          <label for="image">Upload Image</label>
+          <input type="file" class="input-form" name="image" id="image" />
+
+          <div class="btn-submit">
+            <button>Submit</button>
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <div class="container-projectList">
+      <div class="title">
+        <h1>MY PROJECT</h1>
+      </div>
+      <!-- Cards will be here -->
+      <div class="container-cards"></div>
+    </div>
+
+    <script src="myProject.js"></script>
+  </body>
+</html>
