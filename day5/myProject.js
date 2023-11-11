@@ -46,6 +46,7 @@ function submitData(event) {
   };
 
   projects.push(inputData);
+  sessionStorage.setItem("dataSession", JSON.stringify(inputData));
   console.log(projects);
   loopProjects(projects);
 }

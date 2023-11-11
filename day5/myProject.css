@@ -257,9 +257,12 @@ label {
 }
 .project-tech-icons {
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   flex-wrap: wrap;
-  width: 80%;
+  /* justify-content: center; */
+  /* align-items: center; */
+  width: 70%;
+  height: 100px;
 }
 .project-tech-icons i {
   margin-right: 10px;
@@ -267,22 +270,16 @@ label {
   /* flex-direction: row; */
   align-items: center;
 }
-.icons-atas {
+/* .icons-atas {
   display: flex;
   flex-direction: row;
   margin-bottom: 20px;
-  /* justify-content: space-between; */
 }
 .icons-bawah {
   display: flex;
   flex-direction: row;
-}
-.react-js-span {
-  margin-right: 40px;
-}
-.css-span {
-  margin-right: 85px;
-}
+} */
+
 .project-duration {
   display: flex;
   flex-direction: column;
@@ -293,8 +290,24 @@ label {
 }
 .tanggal-project {
   margin-bottom: 20px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 15px;
 }
-.tanggal-span,
-.bulan-span {
-  margin-left: 10px;
+.bulan-project {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 15px;
+}
+.session-react,
+.session-js,
+.session-html,
+.session-css {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  margin-right: 40px;
 }
