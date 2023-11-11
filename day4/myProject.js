@@ -62,10 +62,10 @@ function loopProjects(projects) {
 }
 
 // FUNCTION SHOW-DETAIL-CARD
-function showDetail() {
-  const titleCard = document.querySelector(".project-title");
-  titleCard.addEventListener("click", () => {});
-}
+// function showDetail() {
+//   const titleCard = document.querySelector(".project-title");
+//   titleCard.addEventListener("click", () => {});
+// }
 
 // FUNCTION SHOW-CARD-HTML
 function showCards(data) {
