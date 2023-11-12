@@ -6,7 +6,6 @@
 body {
   background-color: rgb(217, 226, 229);
   font-family: "Poppins", sans-serif;
-  /* font-family: Arial, Helvetica, sans-serif; */
 }
 
 /* Style navbar */
@@ -15,12 +14,10 @@ nav {
 }
 .main-navbar {
   display: flex;
-  /* background-color: whitesmoke; */
   padding: 20px 0;
   margin-left: 60px;
 }
 .nav-list {
-  /* background-color: burlywood; */
   display: flex;
   flex-direction: row;
   flex-grow: 2;
@@ -34,14 +31,12 @@ nav {
   font-weight: bold;
 }
 .nav-list a:hover {
-  font-size: large;
   color: orangered;
 }
 .nav-list img {
   height: 40px;
 }
 .btn-contact {
-  /* background-color: red; */
   display: flex;
   flex-grow: 1;
   justify-content: flex-end;
@@ -101,20 +96,17 @@ label {
 .container-date {
   display: flex;
   flex-direction: row;
-  /* flex-wrap: wrap; */
+  justify-content: space-between;
 }
 .date-kanan input,
 .date-kiri input {
-  width: 80%;
+  width: 90%;
 }
 .container-tech {
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
-  /* gap: 10px; */
   margin-bottom: 15px;
-  /* justify-content: space-between; */
-  /* width: 280px; */
 }
 .kanan,
 .kiri {
@@ -180,12 +172,10 @@ label {
 .logo {
   display: flex;
   flex-direction: row;
-  /* justify-content: center; */
   gap: 10px;
   margin: 30px 0;
 }
 .logo img {
-  /* background-color: red; */
   width: 30px;
 }
 .project-title a {
@@ -219,9 +209,6 @@ label {
   margin: 50px 100px;
 }
 .detail-project-title {
-  /* height: 300px; */
-  /* background-color: pink; */
-  /* border: 2px solid black; */
   text-align: center;
   margin-bottom: 30px;
 }
@@ -232,8 +219,6 @@ label {
   justify-content: space-between;
   align-items: center;
   height: 300px;
-  /* background-color: green; */
-  /* border: 2px solid black; */
   margin-bottom: 40px;
 }
 .project-tech h3 {
@@ -242,8 +227,6 @@ label {
 .project-image {
   width: 40%;
   height: 100%;
-  /* background-color: blue; */
-  /* border: 2px solid black; */
 }
 .project-image img {
   width: 100%;
@@ -252,35 +235,19 @@ label {
 .project-desc {
   width: 40%;
   height: 100%;
-  /* background-color: violet; */
-  /* border: 2px solid black; */
 }
 .project-tech-icons {
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
-  /* justify-content: center; */
-  /* align-items: center; */
   width: 70%;
   height: 100px;
-  /* background-color: rgb(228, 228, 228); */
 }
 .project-tech-icons i {
   margin-right: 10px;
   display: flex;
-  /* flex-direction: row; */
   align-items: center;
 }
-/* .icons-atas {
-  display: flex;
-  flex-direction: row;
-  margin-bottom: 20px;
-}
-.icons-bawah {
-  display: flex;
-  flex-direction: row;
-} */
-
 .project-duration {
   display: flex;
   flex-direction: column;
@@ -310,7 +277,6 @@ label {
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
-  /* margin-right: 40px; */
 }
 .session-react,
 .session-js,

@@ -14,7 +14,6 @@ sessionDate.innerHTML = `${data.startDate} until ${data.endDate}`;
 const sessionMonth = document.querySelector(".session-month");
 sessionMonth.innerHTML = `${data.year > 0 ? `${data.year} tahun` : data.month > 0 ? `${data.month} bulan` : `${data.day} hari`}
 `;
-
 const sessionReact = document.querySelector(".session-react");
 sessionReact.innerHTML = `${data.react ? ` <i class="fa-brands fa-react fa-2xl"></i> <p>React JS</p>` : ""}`;
 
