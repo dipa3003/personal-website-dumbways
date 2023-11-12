@@ -263,6 +263,7 @@ label {
   /* align-items: center; */
   width: 70%;
   height: 100px;
+  background-color: pink;
 }
 .project-tech-icons i {
   margin-right: 10px;
@@ -309,5 +310,11 @@ label {
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
+  /* margin-right: 40px; */
+}
+.session-react,
+.session-js,
+.session-html,
+.session-css p {
   margin-right: 40px;
 }

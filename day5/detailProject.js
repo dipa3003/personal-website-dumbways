@@ -22,10 +22,10 @@ const sessionHtml = document.querySelector(".session-html");
 sessionHtml.innerHTML = `${data.html ? ` <i class="fa-brands fa-html5 fa-2xl"></i> <p>HTML</p>` : ""}`;
 
 const sessionCss = document.querySelector(".session-css");
-sessionCss.innerHTML = `${data.css ? ` <i class="fa-brands fa-html5 fa-2xl"></i> <p>CSS</p>` : ""}`;
+sessionCss.innerHTML = `${data.css ? ` <i class="fa-brands fa-css3-alt fa-2xl"></i> <p>CSS</p>` : ""}`;
 
 const sessionJs = document.querySelector(".session-js");
-sessionJs.innerHTML = `${data.js ? ` <i class="fa-brands fa-html5 fa-2xl"></i> <p>JavaScript</p>` : ""}`;
+sessionJs.innerHTML = `${data.js ? ` <i class="fa-brands fa-js fa-2xl"></i> <p>JavaScript</p>` : ""}`;
 
 // const sessionImage = document.querySelector(".session-image");
 // sessionImage.setAttribute("src", data.image);
