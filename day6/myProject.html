@@ -16,14 +16,26 @@
   <body>
     <nav>
       <div class="main-navbar">
-        <div class="nav-list">
-          <img src="img/dumbways-logo.png" alt="logo dumbways" />
-          <a href="index.html">Home</a>
-          <a href="myProject.html">My Project</a>
+        <img src="img/dumbways-logo.png" alt="logo dumbways" />
+        <div class="navigations">
+          <div class="nav-list">
+            <a href="index.html">Home</a>
+            <a href="myProject.html">My Project</a>
+          </div>
+          <div class="btn-contact">
+            <a href="contact.html" class="btn-navbar">Contact Me</a>
+          </div>
         </div>
-        <div class="btn-contact">
-          <a href="contact.html" class="btn-navbar">Contact Me</a>
+        <div class="humburger">
+          <i class="fa-solid fa-bars fa-2xl" onclick="showNav()" id="humburger"></i>
         </div>
+      </div>
+
+      <!-- navbar when humburger onclick -->
+      <div class="humburger-navbar">
+        <a href="index.html">Home</a>
+        <a href="myProject.html">My Project</a>
+        <a href="contact.html">Contact Me</a>
       </div>
     </nav>
 
@@ -54,18 +66,25 @@
           <label>Technologies</label>
           <div class="container-tech">
             <div class="kanan">
-              <input type="checkbox" name="tech" id="html" value="html" />
-              <label for="html">HTML</label>
+              <div class="check-html">
+                <input type="checkbox" name="tech" id="html" value="html" />
+                <label for="html">HTML</label>
+              </div>
 
-              <input type="checkbox" name="tech" id="css" value="css" />
-              <label for="css">CSS</label>
+              <div class="check-css">
+                <input type="checkbox" name="tech" id="css" value="css" />
+                <label for="css">CSS</label>
+              </div>
             </div>
             <div class="kiri">
-              <input type="checkbox" name="tech" id="react" value="react" />
-              <label for="react">React JS</label>
-
-              <input type="checkbox" name="tech" id="js" value="js" />
-              <label for="js">JavaScript</label>
+              <div class="check-react">
+                <input type="checkbox" name="tech" id="react" value="react" />
+                <label for="react">React JS</label>
+              </div>
+              <div class="check-js">
+                <input type="checkbox" name="tech" id="js" value="js" />
+                <label for="js">JavaScript</label>
+              </div>
             </div>
           </div>
 
@@ -88,5 +107,6 @@
     </div>
 
     <script src="js/myProject.js"></script>
+    <script src="js/navbar.js"></script>
   </body>
 </html>

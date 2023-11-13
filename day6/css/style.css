@@ -154,6 +154,9 @@ nav {
   .describe-detail p {
     text-align: justify;
   }
+  .humburger-navbar {
+    display: none;
+  }
 }
 
 /* Responsive small devices (portrait tablet, larger phones, 600px - 768px) */
@@ -191,6 +194,9 @@ nav {
   .btn-contact {
     margin-left: 100px;
   }
+  .humburger-navbar {
+    display: none;
+  }
 }
 
 /* Responsive extra small devices (phones, 400px - 600px and down) */
@@ -210,5 +216,23 @@ nav {
   }
   .navigations {
     display: none;
+  }
+  .humburger-active {
+    display: flex;
+  }
+  .humburger-navbar {
+    flex-direction: column;
+  }
+  .humburger-navbar a {
+    text-decoration: none;
+    color: white;
+    padding: 10px;
+    border: 2px solid white;
+    background-color: #9a9a9a;
+    text-align: center;
+    font-weight: bold;
+  }
+  .humburger-navbar :nth-child(1) {
+    background-color: orangered;
   }
 }
