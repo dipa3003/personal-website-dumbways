@@ -41,10 +41,8 @@ nav {
   display: flex;
   flex-grow: 1;
   justify-content: flex-end;
-  /* margin-right: 60px; */
 }
 .humburger {
-  /* display: flex; */
   flex-grow: 1;
   justify-content: flex-end;
   align-items: center;
@@ -70,7 +68,7 @@ nav {
 /* Style home */
 .home {
   background-color: whitesmoke;
-  margin: 80px 60px;
+  margin: 50px 60px;
   border-radius: 10px;
   display: flex;
   flex-direction: row;
@@ -104,7 +102,6 @@ nav {
 }
 .icons {
   display: flex;
-  /* justify-content: flex-start; */
   gap: 20px;
 }
 .icons img {
@@ -124,7 +121,6 @@ nav {
 
 .profil img {
   width: 100%;
-  /* height: 350px; */
 }
 .detail {
   margin: 20px auto;
@@ -170,11 +166,9 @@ nav {
   }
   .profil {
     width: 60%;
-    /* height: 80%; */
   }
   .banner {
     width: 100%;
-    /* height: 50%; */
   }
   .detail {
     margin: 10px auto;

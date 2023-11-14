@@ -4,19 +4,38 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="css/contact.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
+      integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
     <title>Contact Me</title>
   </head>
   <body>
     <nav>
       <div class="main-navbar">
-        <div class="nav-list">
-          <img src="img/dumbways-logo.png" alt="logo dumbways" />
-          <a href="index.html">Home</a>
-          <a href="myProject.html">My Project</a>
+        <img src="img/dumbways-logo.png" alt="logo dumbways" />
+        <div class="navigations">
+          <div class="nav-list">
+            <a href="index.html">Home</a>
+            <a href="myProject.html">My Project</a>
+          </div>
+          <div class="btn-contact">
+            <a href="contact.html" class="btn-navbar">Contact Me</a>
+          </div>
         </div>
-        <div class="btn-contact">
-          <a href="contact.html" class="btn-navbar">Contact Me</a>
+        <div class="humburger">
+          <i class="fa-solid fa-bars fa-2xl" onclick="showNav()" id="humburger"></i>
         </div>
+      </div>
+
+      <!-- navbar when humburger onclick -->
+      <div class="humburger-navbar">
+        <a href="index.html">Home</a>
+        <a href="myProject.html">My Project</a>
+        <a href="contact.html">Contact Me</a>
       </div>
     </nav>
 
@@ -55,5 +74,6 @@
     </div>
 
     <script src="js/contact.js"></script>
+    <script src="js/navbar.js"></script>
   </body>
 </html>

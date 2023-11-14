@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="css/myProject.css" />
+    <link rel="stylesheet" href="css/detailProject.css" />
     <title>My Project</title>
     <link
       rel="stylesheet"
@@ -16,14 +16,26 @@
   <body>
     <nav>
       <div class="main-navbar">
-        <div class="nav-list">
-          <img src="img/dumbways-logo.png" alt="logo dumbways" />
-          <a href="index.html">Home</a>
-          <a href="myProject.html">My Project</a>
+        <img src="img/dumbways-logo.png" alt="logo dumbways" />
+        <div class="navigations">
+          <div class="nav-list">
+            <a href="index.html">Home</a>
+            <a href="myProject.html">My Project</a>
+          </div>
+          <div class="btn-contact">
+            <a href="contact.html" class="btn-navbar">Contact Me</a>
+          </div>
         </div>
-        <div class="btn-contact">
-          <a href="contact.html" class="btn-navbar">Contact Me</a>
+        <div class="humburger">
+          <i class="fa-solid fa-bars fa-2xl" onclick="showNav()" id="humburger"></i>
         </div>
+      </div>
+
+      <!-- navbar when humburger onclick -->
+      <div class="humburger-navbar">
+        <a href="index.html">Home</a>
+        <a href="myProject.html">My Project</a>
+        <a href="contact.html">Contact Me</a>
       </div>
     </nav>
 
@@ -64,5 +76,6 @@
       </div>
     </div>
     <script src="js/detailProject.js"></script>
+    <script src="js/navbar.js"></script>
   </body>
 </html>
