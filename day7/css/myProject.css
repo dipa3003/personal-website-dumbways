@@ -426,7 +426,7 @@ label {
 }
 
 /* Responsive extra small devices (phones, 400px - 600px and down) */
-@media only screen and (max-width: 600px) {
+@media only screen and (max-width: 735px) {
   .title {
     margin-top: 20px;
   }
