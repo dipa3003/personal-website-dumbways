@@ -2,10 +2,10 @@
 
 * {
   margin: 0;
+  font-family: "Poppins", sans-serif;
 }
 body {
   background-color: rgb(217, 226, 229);
-  font-family: "Poppins", sans-serif;
 }
 
 /* Style navbar */
@@ -93,10 +93,14 @@ nav {
 .download {
   display: flex;
   flex-direction: row;
-  align-items: center;
+  /* align-items: flex-end; */
+  /* justify-content: center; */
 }
-.download img {
-  width: 25px;
+.download p {
+  margin-bottom: 0;
+}
+.download i {
+  /* width: 25px; */
   margin-left: 10px;
   cursor: pointer;
 }

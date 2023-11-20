@@ -64,26 +64,50 @@ function loopProjects(projects) {
 
 // FUNCTION SHOW-CARD-HTML
 function showCards(data) {
-  return `<div class="card">
+  return `<div class="card" style="width: 18rem;">
             <div class="image">
-                <img src="${data.image}" alt="" />
+            <img src="${data.image}" class="card-img-top" alt="image">
             </div>
-            <div class="project-title">
-            <a href="detailProject.html"><h3>${data.name}</h3></a>
-                ${data.year > 0 ? `<p>durasi: ${data.year} tahun</p>` : data.month > 0 ? `<p>durasi: ${data.month} bulan</p>` : `<p>durasi: ${data.day} hari</p>`}
+            <div class="card-body project-title">
+              <div class="card-title">
+                 <a href="detailProject.html"><h3>${data.name}</h3></a>
+                  ${data.year > 0 ? `<p>durasi: ${data.year} tahun</p>` : data.month > 0 ? `<p>durasi: ${data.month} bulan</p>` : `<p>durasi: ${data.day} hari</p>`}
+              </div>
+              <p class="card-text">${data.description}</p>
+              <div class="logo">
+                ${data.html ? ` <i class="fa-brands fa-html5 fa-2xl"></i>` : ""}
+                ${data.css ? ` <i class="fa-brands fa-css3-alt fa-2xl"></i>` : ""}
+                ${data.js ? ` <i class="fa-brands fa-js fa-2xl"></i>` : ""}
+                ${data.react ? ` <i class="fa-brands fa-react fa-2xl"></i>` : ""}
+              </div>
+
+              <div class="btn-card">
+              <a href="#" class="btn btn-primary">Edit</a>
+              <a href="#" class="btn btn-primary">Delete</a>
             </div>
-            <div class="content">
-                <p>${data.description}</p>
             </div>
-            <div class="logo">
-              ${data.html ? ` <i class="fa-brands fa-html5 fa-2xl"></i>` : ""}
-              ${data.css ? ` <i class="fa-brands fa-css3-alt fa-2xl"></i>` : ""}
-              ${data.js ? ` <i class="fa-brands fa-js fa-2xl"></i>` : ""}
-              ${data.react ? ` <i class="fa-brands fa-react fa-2xl"></i>` : ""}
-            </div>
-            <div class="btn-card">
-                <button>Edit</button>
-                <button>Delete</button>
-            </div>
-        </div>`;
+          </div>`;
+
+  // `<div class="card">
+  //           <div class="image">
+  //               <img src="${data.image}" alt="" />
+  //           </div>
+  //           <div class="project-title">
+  //           <a href="detailProject.html"><h3>${data.name}</h3></a>
+  //               ${data.year > 0 ? `<p>durasi: ${data.year} tahun</p>` : data.month > 0 ? `<p>durasi: ${data.month} bulan</p>` : `<p>durasi: ${data.day} hari</p>`}
+  //           </div>
+  //           <div class="content">
+  //               <p>${data.description}</p>
+  //           </div>
+  //           <div class="logo">
+  //             ${data.html ? ` <i class="fa-brands fa-html5 fa-2xl"></i>` : ""}
+  //             ${data.css ? ` <i class="fa-brands fa-css3-alt fa-2xl"></i>` : ""}
+  //             ${data.js ? ` <i class="fa-brands fa-js fa-2xl"></i>` : ""}
+  //             ${data.react ? ` <i class="fa-brands fa-react fa-2xl"></i>` : ""}
+  //           </div>
+  //           <div class="btn-card">
+  //               <button>Edit</button>
+  //               <button>Delete</button>
+  //           </div>
+  //       </div>`;
 }

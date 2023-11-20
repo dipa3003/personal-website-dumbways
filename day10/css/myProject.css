@@ -2,10 +2,10 @@
 
 * {
   margin: 0;
+  font-family: "Poppins", sans-serif;
 }
 body {
   background-color: rgb(217, 226, 229);
-  font-family: "Poppins", sans-serif;
 }
 
 /* Style navbar */
@@ -87,6 +87,7 @@ nav {
 .form {
   display: flex;
   flex-direction: column;
+  margin: 20px 100px;
 }
 .input-form {
   margin-bottom: 15px;
@@ -105,9 +106,13 @@ label {
   flex-direction: row;
   justify-content: space-between;
 }
+.date-kanan,
+.date-kiri {
+  width: 45%;
+}
 .date-kanan input,
 .date-kiri input {
-  width: 90%;
+  width: 100%;
 }
 
 .btn-submit {
@@ -180,8 +185,8 @@ label {
   display: flex;
   justify-content: space-between;
 }
-.btn-card button {
-  width: 40%;
+.btn-card a {
+  /* width: 40%; */
   padding: 5px 20px;
   border-radius: 10px;
   cursor: pointer;
@@ -189,7 +194,7 @@ label {
   color: white;
 }
 
-.btn-card button:hover {
+.btn-card a:hover {
   color: white;
   background-color: orangered;
 }
@@ -279,6 +284,9 @@ label {
 
 /* Responsive extra large devices (993px and up) */
 @media only screen and (min-width: 993px) {
+  .form {
+    margin: 20px 100px;
+  }
   .container-tech {
     display: flex;
     flex-direction: row;
@@ -317,6 +325,9 @@ label {
 
 /* Responsinve Large devices (laptop/desktop, 769px and up) */
 @media only screen and (max-width: 992px) {
+  .form {
+    margin: 20px 30px;
+  }
   /* styling card list */
   .container-cards {
     margin: 20px;
@@ -375,6 +386,10 @@ label {
 
 /* Responsive medium devices (portrait tablet, larger phones, 768px andn up) */
 @media only screen and (max-width: 768px) {
+  /* styling form control */
+  .form {
+    margin: 20px 30px;
+  }
   /* styling card list */
   .container-cards {
     margin: 20px;
@@ -431,6 +446,9 @@ label {
     margin-top: 20px;
   }
   /* styling form add project */
+  .form {
+    margin: 20px 30px;
+  }
   .container {
     margin: 20px;
   }
@@ -444,10 +462,10 @@ label {
   .date-kiri {
     width: 40%;
   }
-  .date-kanan input,
+  /* .date-kanan input,
   .date-kiri input {
     width: 80%;
-  }
+  } */
   .container-tech {
     display: flex;
     flex-direction: row;

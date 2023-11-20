@@ -85,6 +85,10 @@ nav {
   align-items: center;
   /* height: 300px; */
   margin-bottom: 40px;
+  padding: 40px;
+}
+.detail-content {
+  padding: 0 40px;
 }
 .project-tech h3 {
   margin-bottom: 10px;
@@ -140,9 +144,19 @@ nav {
 .session-css {
   display: flex;
   flex-direction: row;
-  justify-content: space-between;
+  /* justify-content: space-between; */
   align-items: center;
+  width: 150px;
+  height: 50px;
 }
+/* .session-react p {
+  width: 100%;
+  text-align: center;
+}
+.session-react i {
+  text-align: center;
+  height: 20px;
+} */
 /* .session-react,
 .session-js,
 .session-html,
@@ -152,6 +166,9 @@ nav {
 
 /* Responsive extra large devices (993px and up) */
 @media only screen and (min-width: 993px) {
+  .detail-title {
+    margin-bottom: 10px;
+  }
   .container-detail {
     margin: 20px;
   }
@@ -202,6 +219,9 @@ nav {
 
 /* Responsinve Large devices (laptop/desktop, 769px and up) */
 @media only screen and (max-width: 992px) {
+  .detail-title {
+    margin-bottom: 10px;
+  }
   .container-detail {
     margin: 20px;
   }
@@ -344,6 +364,8 @@ nav {
   }
   .detail-title {
     flex-direction: column;
+    margin-bottom: 20px;
+    padding-bottom: 0;
   }
   .project-image {
     width: 80%;
@@ -374,8 +396,9 @@ nav {
     margin-bottom: 10px;
   }
   .detail-content {
-    padding-left: 20px;
-    padding-right: 20px;
+    /* padding-left: 20px;
+    padding-right: 20px; */
+    padding: 0 60px;
     text-align: justify;
   }
   .detail-project-title {
