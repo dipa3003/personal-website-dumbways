@@ -1,0 +1,15 @@
+{
+  "name": "personal-web",
+  "version": "1.0.0",
+  "description": "personal website for task in dumbways stage 1",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "dipa galatian",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.18.2",
+    "hbs": "^4.2.0"
+  }
+}
