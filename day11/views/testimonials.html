@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
+      integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <link rel="stylesheet" href="css/testimonials.css" />
+    <title>Testimonials</title>
+  </head>
+  <body>
+    <nav>
+      <div class="main-navbar">
+        <img src="img/dumbways-logo.png" alt="logo dumbways" />
+        <div class="navigations">
+          <div class="nav-list">
+            <a href="index.html">Home</a>
+            <a href="myProject.html">Add Project</a>
+            <a href="testimonials.html">Testimonials</a>
+          </div>
+          <div class="btn-contact">
+            <a href="contact.html" class="btn-navbar">Contact Me</a>
+          </div>
+        </div>
+        <div class="humburger">
+          <i class="fa-solid fa-bars fa-2xl" onclick="showNav()" id="humburger"></i>
+        </div>
+      </div>
+
+      <!-- navbar when humburger onclick -->
+      <div class="humburger-navbar">
+        <a href="index.html">Home</a>
+        <a href="myProject.html">Add Project</a>
+        <a href="contact.html">Contact Me</a>
+        <a href="testimonials.html">Testimonials</a>
+      </div>
+    </nav>
+
+    <div class="title-testimonial">
+      <h1>My Testimonials</h1>
+    </div>
+
+    <div class="container-rating">
+      <h3>Rating By Star</h3>
+      <div class="filter-star">
+        <button onclick="filterAll()">All</button>
+        <button onclick="filterStar(1)">1 <i class="fa-solid fa-star"></i></button>
+        <button onclick="filterStar(2)">2 <i class="fa-solid fa-star"></i></button>
+        <button onclick="filterStar(3)">3 <i class="fa-solid fa-star"></i></button>
+        <button onclick="filterStar(4)">4 <i class="fa-solid fa-star"></i></button>
+        <button onclick="filterStar(5)">5 <i class="fa-solid fa-star"></i></button>
+      </div>
+    </div>
+    <div class="testimonial-container">
+      <!-- Dynamic card will inject here -->
+    </div>
+
+    <script src="js/testimonials.js"></script>
+    <script src="js/navbar.js"></script>
+  </body>
+</html>
