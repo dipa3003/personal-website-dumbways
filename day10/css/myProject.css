@@ -160,6 +160,7 @@ label {
 .image {
   height: 85%;
   margin-bottom: 8px;
+  object-fit: cover;
 }
 .image img {
   width: 100%;
