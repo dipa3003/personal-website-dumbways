@@ -23,7 +23,7 @@
         <div class="navigations">
           <div class="nav-list">
             <a href="index.html">Home</a>
-            <a href="myProject.html">My Project</a>
+            <a href="myProject.html">Add Project</a>
             <a href="testimonials.html">Testimonials</a>
           </div>
           <div class="btn-contact">
@@ -38,7 +38,7 @@
       <!-- navbar when humburger onclick -->
       <div class="humburger-navbar">
         <a href="index.html">Home</a>
-        <a href="myProject.html">My Project</a>
+        <a href="myProject.html">Add Project</a>
         <a href="contact.html">Contact Me</a>
         <a href="testimonials.html">Testimonials</a>
       </div>
@@ -51,7 +51,7 @@
         </div>
 
         <!-- Form Contact me Bootstrap -->
-        <form>
+        <form class="form">
           <div class="mb-3">
             <label for="inputName" class="form-label">Name</label>
             <input type="text" class="form-control" id="inputName" aria-describedby="emailHelp" />
@@ -75,7 +75,9 @@
             <label for="inputMessage" class="form-label">Your Message</label>
             <textarea class="form-control" id="inputMessage" rows="3"></textarea>
           </div>
-          <button type="submit" class="btn btn-primary">Submit</button>
+          <div class="btn-submit">
+            <button onclick="dataForm()" type="submit" class="btn btn-primary">Submit</button>
+          </div>
         </form>
 
         <!-- <form class="form">
@@ -100,9 +102,9 @@
           <textarea cols="30" rows="10" class="input-form" placeholder="Write your message here..." id="inputMessage"></textarea>
         </form> -->
 
-        <div class="btn-submit">
+        <!-- <div class="btn-submit">
           <button onclick="dataForm()">Submit</button>
-        </div>
+        </div> -->
       </div>
     </div>
 
