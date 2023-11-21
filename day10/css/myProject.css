@@ -5,12 +5,12 @@
   font-family: "Poppins", sans-serif;
 }
 body {
-  background-color: rgb(217, 226, 229);
+  background-color: white;
 }
 
 /* Style navbar */
 nav {
-  background-color: whitesmoke;
+  background-color: white;
 }
 .main-navbar {
   display: flex;
@@ -71,6 +71,8 @@ nav {
   display: flex;
   justify-content: center;
   margin-bottom: 10px;
+  background-color: #1b3c35;
+  color: white;
 }
 .container {
   width: 500px;
@@ -323,7 +325,7 @@ label {
   }
 }
 
-/* Responsinve Large devices (laptop/desktop, 769px and up) */
+/* Responsinve Large devices (laptop/desktop, 769px and 992px) */
 @media only screen and (max-width: 992px) {
   .form {
     margin: 20px 30px;
@@ -384,7 +386,7 @@ label {
   }
 }
 
-/* Responsive medium devices (portrait tablet, larger phones, 768px andn up) */
+/* Responsive medium devices (portrait tablet, larger phones, 736px - 768px) */
 @media only screen and (max-width: 768px) {
   /* styling form control */
   .form {
@@ -440,7 +442,7 @@ label {
   }
 }
 
-/* Responsive extra small devices (phones, 400px - 600px and down) */
+/* Responsive extra small devices (phones, 400px - 735px and down) */
 @media only screen and (max-width: 735px) {
   .title {
     margin-top: 20px;
@@ -462,10 +464,6 @@ label {
   .date-kiri {
     width: 40%;
   }
-  /* .date-kanan input,
-  .date-kiri input {
-    width: 80%;
-  } */
   .container-tech {
     display: flex;
     flex-direction: row;

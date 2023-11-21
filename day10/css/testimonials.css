@@ -2,10 +2,10 @@
 
 * {
   margin: 0;
+  font-family: "Poppins", sans-serif;
 }
 body {
   background-color: rgb(217, 226, 229);
-  font-family: "Poppins", sans-serif;
 }
 
 /* Style navbar */

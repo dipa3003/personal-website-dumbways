@@ -54,7 +54,7 @@
         <form class="form">
           <div class="mb-3">
             <label for="inputName" class="form-label">Name</label>
-            <input type="text" class="form-control" id="inputName" aria-describedby="emailHelp" />
+            <input type="text" class="form-control" id="inputName" />
           </div>
           <div class="mb-3">
             <label for="inputEmail" class="form-label">Email</label>
@@ -65,7 +65,7 @@
             <input type="text" class="form-control" id="inputPhone" />
           </div>
           <label for="inputSubject" class="form-label">Subject</label>
-          <select class="form-select mb-3" aria-label="Default select example" id="inputSubject">
+          <select class="form-select mb-3" id="inputSubject">
             <option selected>Select your role</option>
             <option value="Frontend Developer">Frontend Developer</option>
             <option value="Backend Developer">Backend Developer</option>
@@ -73,38 +73,12 @@
           </select>
           <div class="mb-3">
             <label for="inputMessage" class="form-label">Your Message</label>
-            <textarea class="form-control" id="inputMessage" rows="3"></textarea>
+            <textarea class="form-control" id="inputMessage" rows="3" placeholder="Write me something..."></textarea>
           </div>
           <div class="btn-submit">
             <button onclick="dataForm()" type="submit" class="btn btn-primary">Submit</button>
           </div>
         </form>
-
-        <!-- <form class="form">
-          <label>Nama</label>
-          <input type="text" class="input-form" id="inputName" />
-
-          <label>Email</label>
-          <input type="email" class="input-form" id="inputEmail" />
-
-          <label>Phone Number</label>
-          <input type="text" class="input-form" id="inputPhone" />
-
-          <label>Subject</label>
-          <select class="input-form" id="inputSubject">
-            <option value=""></option>
-            <option value="Frontend Developer">Frontend Developer</option>
-            <option value="Backend Developer">Backend Developer</option>
-            <option value="Fullstack Developer">Fullstack Developer</option>
-          </select>
-
-          <label>Your Message</label>
-          <textarea cols="30" rows="10" class="input-form" placeholder="Write your message here..." id="inputMessage"></textarea>
-        </form> -->
-
-        <!-- <div class="btn-submit">
-          <button onclick="dataForm()">Submit</button>
-        </div> -->
       </div>
     </div>
 

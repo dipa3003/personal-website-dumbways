@@ -5,12 +5,12 @@
   font-family: "Poppins", sans-serif;
 }
 body {
-  background-color: rgb(217, 226, 229);
+  background-color: white;
 }
 
 /* Style navbar */
 nav {
-  background-color: whitesmoke;
+  background-color: white;
 }
 .main-navbar {
   display: flex;
@@ -67,7 +67,7 @@ nav {
 
 /* Style home */
 .home {
-  background-color: whitesmoke;
+  background-color: #739072;
   margin: 50px 60px;
   border-radius: 10px;
   display: flex;
@@ -93,14 +93,11 @@ nav {
 .download {
   display: flex;
   flex-direction: row;
-  /* align-items: flex-end; */
-  /* justify-content: center; */
 }
 .download p {
   margin-bottom: 0;
 }
 .download i {
-  /* width: 25px; */
   margin-left: 10px;
   cursor: pointer;
 }
@@ -159,7 +156,7 @@ nav {
   }
 }
 
-/* Responsive small devices (portrait tablet, larger phones, 600px - 768px) */
+/* Responsive small devices (portrait tablet, larger phones, 736px - 768px) */
 @media only screen and (max-width: 768px) {
   .home {
     flex-direction: column;
@@ -197,7 +194,7 @@ nav {
   }
 }
 
-/* Responsive extra small devices (phones, 400px - 600px and down) */
+/* Responsive extra small devices (phones, 735px and down) */
 @media only screen and (max-width: 735px) {
   .home {
     margin: 40px 30px;

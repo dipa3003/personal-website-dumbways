@@ -2,10 +2,10 @@
 
 * {
   margin: 0;
+  font-family: "Poppins", sans-serif;
 }
 body {
   background-color: rgb(217, 226, 229);
-  font-family: "Poppins", sans-serif;
 }
 
 /* Style navbar */
@@ -41,10 +41,8 @@ nav {
   display: flex;
   flex-grow: 1;
   justify-content: flex-end;
-  /* margin-right: 60px; */
 }
 .humburger {
-  /* display: flex; */
   flex-grow: 1;
   justify-content: flex-end;
   align-items: center;
@@ -71,7 +69,6 @@ nav {
 .container-detail {
   display: flex;
   flex-direction: column;
-  /* margin: 50px 100px; */
 }
 .detail-project-title {
   text-align: center;
@@ -83,7 +80,6 @@ nav {
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
-  /* height: 300px; */
   margin-bottom: 40px;
   padding: 40px;
 }
@@ -109,8 +105,6 @@ nav {
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
-  /* width: 70%;
-  height: 60%; */
 }
 .project-tech-icons i {
   margin-right: 10px;
@@ -144,25 +138,10 @@ nav {
 .session-css {
   display: flex;
   flex-direction: row;
-  /* justify-content: space-between; */
   align-items: center;
   width: 150px;
   height: 50px;
 }
-/* .session-react p {
-  width: 100%;
-  text-align: center;
-}
-.session-react i {
-  text-align: center;
-  height: 20px;
-} */
-/* .session-react,
-.session-js,
-.session-html,
-.session-css {
-  margin-right: 40px;
-} */
 
 /* Responsive extra large devices (993px and up) */
 @media only screen and (min-width: 993px) {
@@ -290,7 +269,7 @@ nav {
   }
 }
 
-/* Responsive medium devices (portrait tablet, larger phones, 768px andn up) */
+/* Responsive medium devices (portrait tablet, larger phones, 735px - 768px) */
 @media only screen and (max-width: 768px) {
   /* styling detail-project */
   .container-detail {
@@ -319,9 +298,6 @@ nav {
     width: 40%;
     text-align: center;
   }
-  /* .image {
-      height: 300px;
-    } */
   .container-tech {
     display: flex;
     flex-direction: row;
@@ -357,7 +333,7 @@ nav {
   }
 }
 
-/* Responsive extra small devices (phones, 400px - 600px and down) */
+/* Responsive extra small devices (phones, 400px - 735px) */
 @media only screen and (max-width: 735px) {
   .title {
     margin-top: 20px;
@@ -379,14 +355,11 @@ nav {
   }
   .project-tech-icons {
     width: 100%;
-    /* height: 0; */
   }
   .project-desc {
     width: 100%;
-    /* padding-left: 20px; */
   }
   .project-tech {
-    /* width: 100%; */
     padding-left: 20px;
   }
   .project-duration {
@@ -396,8 +369,6 @@ nav {
     margin-bottom: 10px;
   }
   .detail-content {
-    /* padding-left: 20px;
-    padding-right: 20px; */
     padding: 0 60px;
     text-align: justify;
   }

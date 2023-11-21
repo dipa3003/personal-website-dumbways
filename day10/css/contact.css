@@ -5,7 +5,7 @@
   font-family: "Poppins", sans-serif;
 }
 body {
-  background-color: #dce0e4;
+  background-color: white;
 }
 
 /* Style navbar */
@@ -41,10 +41,8 @@ nav {
   display: flex;
   flex-grow: 1;
   justify-content: flex-end;
-  /* margin-right: 60px; */
 }
 .humburger {
-  /* display: flex; */
   flex-grow: 1;
   justify-content: flex-end;
   align-items: center;
@@ -70,6 +68,8 @@ nav {
 .component-form {
   display: flex;
   justify-content: center;
+  background-color: #1b3c35;
+  color: white;
 }
 .container {
   width: 400px;
@@ -154,7 +154,7 @@ label {
   }
 }
 
-/* Responsinve Large devices (laptop/desktop, 769px and up) */
+/* Responsinve Large devices (laptop/desktop, 769px and 992px) */
 @media only screen and (max-width: 992px) {
   /* styling card list */
   .container-cards {
@@ -265,7 +265,7 @@ label {
   }
 }
 
-/* Responsive extra small devices (phones, 400px - 600px and down) */
+/* Responsive extra small devices (phones, 735px and down) */
 @media only screen and (max-width: 735px) {
   .title {
     margin-top: 20px;
