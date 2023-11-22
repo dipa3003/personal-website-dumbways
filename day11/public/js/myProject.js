@@ -70,7 +70,7 @@ function showCards(data) {
             </div>
             <div class="card-body project-title">
               <div class="card-title">
-                 <a href="detailProject.html"><h3>${data.name}</h3></a>
+                 <a href="/project/detail"><h3>${data.name}</h3></a>
                   ${data.year > 0 ? `<p>durasi: ${data.year} tahun</p>` : data.month > 0 ? `<p>durasi: ${data.month} bulan</p>` : `<p>durasi: ${data.day} hari</p>`}
               </div>
               <p class="card-text">${data.description}</p>
