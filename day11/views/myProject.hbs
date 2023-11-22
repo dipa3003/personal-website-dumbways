@@ -49,7 +49,7 @@
         </div>
 
         <!-- Form Control Bootstrap -->
-        <form method="post" action="/project" class="form">
+        <form method="post" action="/project" class="form" enctype="multipart/form-data">
           <div class="mb-3">
             <label for="inputName" class="form-label">Project Name</label>
             <input type="text" class="form-control" id="inputName" name="title" />
@@ -105,14 +105,6 @@
           </div>
         </form>
       </div>
-    </div>
-
-    <div class="container-projectList">
-      <div class="title">
-        <h1>MY PROJECT</h1>
-      </div>
-      <!-- Cards will be here -->
-      <div class="container-cards"></div>
     </div>
 
     <script src="/js/myProject.js"></script>

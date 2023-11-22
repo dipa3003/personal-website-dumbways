@@ -90,7 +90,7 @@
         {{#each dataProjects}}
           <div class="card" style="width: 18rem;">
             <div class="image">
-              <img src="{{this.image}}" class="card-img-top" alt="image" />
+              <img src="/img/mobilegame.jpg" class="card-img-top" alt="image" />
             </div>
             <div class="card-body project-title">
               <div class="card-title">
@@ -98,13 +98,12 @@
                 <p>{{this.duration}}</p>
               </div>
               <p class="card-text">{{this.description}}</p>
-              {{! <div class="logo">
-                ${this.datahtml ? `
-                <i class="fa-brands fa-html5 fa-2xl"></i>` : ""} ${this.css ? `
-                <i class="fa-brands fa-css3-alt fa-2xl"></i>` : ""} ${this.js ? `
-                <i class="fa-brands fa-js fa-2xl"></i>` : ""} ${this.react ? `
-                <i class="fa-brands fa-react fa-2xl"></i>` : ""}
-              </div> }}
+              <div class="logo">
+                {{{tech.html}}}
+                {{{tech.css}}}
+                {{{tech.react}}}
+                {{{tech.js}}}
+              </div>
 
               <div class="btn-card">
                 <a href="#" class="btn btn-primary">Edit</a>
