@@ -41,6 +41,7 @@ app.get("/project/detail", (req, res) => {
 
 // Route post form add-project
 app.post("/project", upload.single("image"), (req, res) => {
+  // fetch data req.body dari form add project
   const data = req.body;
   console.log("req.body:", data, "req.file:", req.file);
   const image = req.file.filename;
