@@ -1,17 +1,22 @@
-// import express from "express";
-// import path from "path";
-
 const express = require("express");
 const path = require("path");
 const multer = require("multer");
+
+// setup multer storage
 const storage = multer.diskStorage({
-  destination: "/public/uploads",
+  destination: (req, file, cb) => {
+    cb(null, "./public/uploads");
+  },
   filename: (req, file, cb) => {
-    cb(null, `${file.originalname}`);
+    console.log("file:", file);
+    cb(null, Date.now() + file.originalname);
   },
 });
-const upload = multer({ storage });
 
+// middleware multer
+const upload = multer({ storage: storage });
+
+// setup express app
 const app = express();
 const port = 5000;
 
@@ -19,7 +24,6 @@ const port = 5000;
 app.set("view engine", "hbs");
 app.set("views", path.join(__dirname, "views")); //"views" (di params 1) is constructor for render view html/hbs
 app.use(express.static(path.join(__dirname, "public")));
-app.use(express.static("uploads"));
 app.use(express.urlencoded({ extended: false }));
 
 let dataProjects = [];
@@ -37,9 +41,9 @@ app.get("/project/detail", (req, res) => {
 
 // Route post form add-project
 app.post("/project", upload.single("image"), (req, res) => {
-  const image = req.file;
   const data = req.body;
-  console.log(data, "image:", image);
+  console.log("req.body:", data, "req.file:", req.file);
+  const image = req.file.filename;
 
   // validasi durasi project
   let start = Date.parse(data.dateStart);
@@ -70,6 +74,7 @@ app.post("/project", upload.single("image"), (req, res) => {
     description: data.description,
     duration,
     tech,
+    image,
   };
   dataProjects.unshift(dataSubmit);
 
