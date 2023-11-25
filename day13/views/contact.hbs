@@ -1,0 +1,89 @@
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="/css/contact.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
+      integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous" />
+
+    <title>Contact Me</title>
+  </head>
+  <body>
+    <nav>
+      <div class="main-navbar">
+        <img src="/img/dumbways-logo.png" alt="logo dumbways" />
+        <div class="navigations">
+          <div class="nav-list">
+            <a href="/">Home</a>
+            <a href="/project">Add Project</a>
+            <a href="/testimonials">Testimonials</a>
+          </div>
+          <div class="btn-contact">
+            <a href="/contact" class="btn-navbar">Contact Me</a>
+          </div>
+        </div>
+        <div class="humburger">
+          <i class="fa-solid fa-bars fa-2xl" onclick="showNav()" id="humburger"></i>
+        </div>
+      </div>
+
+      <!-- navbar when humburger onclick -->
+      <div class="humburger-navbar">
+        <a href="/">Home</a>
+        <a href="/project">Add Project</a>
+        <a href="/contact">Contact Me</a>
+        <a href="/testimonials">Testimonials</a>
+      </div>
+    </nav>
+
+    <div class="component-form">
+      <div class="container">
+        <div class="title">
+          <h1>GET IN TOUCH</h1>
+        </div>
+
+        <!-- Form Contact me Bootstrap -->
+        <form class="form">
+          <div class="mb-3">
+            <label for="inputName" class="form-label">Name</label>
+            <input type="text" class="form-control" id="inputName" />
+          </div>
+          <div class="mb-3">
+            <label for="inputEmail" class="form-label">Email</label>
+            <input type="text" class="form-control" id="inputEmail" />
+          </div>
+          <div class="mb-3">
+            <label for="inputPhone" class="form-label">Phone Number</label>
+            <input type="text" class="form-control" id="inputPhone" />
+          </div>
+          <label for="inputSubject" class="form-label">Subject</label>
+          <select class="form-select mb-3" id="inputSubject">
+            <option selected>Select your role</option>
+            <option value="Frontend Developer">Frontend Developer</option>
+            <option value="Backend Developer">Backend Developer</option>
+            <option value="Fullstack Developer">Fullstack Developer</option>
+          </select>
+          <div class="mb-3">
+            <label for="inputMessage" class="form-label">Your Message</label>
+            <textarea class="form-control" id="inputMessage" rows="3" placeholder="Write me something."></textarea>
+          </div>
+          <div class="btn-submit">
+            <button onclick="dataForm()" type="submit" class="btn btn-primary">Submit</button>
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <script src="/js/contact.js"></script>
+    <script src="/js/navbar.js"></script>
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+  </body>
+</html>
