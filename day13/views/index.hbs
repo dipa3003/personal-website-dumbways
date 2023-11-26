@@ -99,10 +99,13 @@
               </div>
               <p class="card-text">{{this.description}}</p>
               <div class="logo">
-                {{{tech.html}}}
+                {{#each technologies}}
+                  <i class="fa-brands fa-{{{this}}} fa-2xl"></i>
+                {{/each}}
+                {{!-- {{{tech.html}}}
                 {{{tech.css}}}
                 {{{tech.react}}}
-                {{{tech.js}}}
+                {{{tech.js}}} --}}
               </div>
 
               <div class="btn-card">

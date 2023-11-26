@@ -1,6 +1,9 @@
 const express = require("express");
 const path = require("path");
 const multer = require("multer");
+const config = require("./config/config.json");
+const { Sequelize, QueryTypes } = require("sequelize");
+const sequelize = new Sequelize(config.development);
 
 // setup multer storage
 const storage = multer.diskStorage({
@@ -28,8 +31,13 @@ app.use(express.urlencoded({ extended: false }));
 
 let dataProjects = [];
 
-app.get("/", (req, res) => {
-  res.render("index", { dataProjects });
+app.get("/", async (req, res) => {
+  const query = "SELECT * FROM projects";
+  const obj = await sequelize.query(query, { type: QueryTypes.SELECT });
+  console.log("data dr posgres:", obj);
+  console.log("data projects:", dataProjects);
+  // res.render("index", { dataProjects });
+  res.render("index", { dataProjects: obj });
 });
 
 app.get("/project", (req, res) => {
@@ -49,7 +57,7 @@ app.get("/project/detail/:index", (req, res) => {
 app.post("/project", upload.single("image"), (req, res) => {
   // fetch data req.body dari form add project
   const data = req.body;
-  // console.log("req.body:", data, "req.file:", req.file);
+  console.log("req.body:", data, "req.file:", req.file);
   const image = req.file.filename;
 
   // validasi durasi project
@@ -69,12 +77,7 @@ app.post("/project", upload.single("image"), (req, res) => {
   const js = data.js == "on" ? `<i class="fa-brands fa-js fa-2xl"></i>` : "";
   const react = data.react == "on" ? `<i class="fa-brands fa-react fa-2xl"></i>` : "";
 
-  const tech = {
-    html,
-    css,
-    react,
-    js,
-  };
+  const tech = [html, css, react, js];
 
   let dataSubmit = {
     title: data.title,
