@@ -3,8 +3,6 @@ const path = require("path");
 const multer = require("multer");
 const config = require("./config/config.json");
 const { Sequelize, QueryTypes } = require("sequelize");
-const { type } = require("os");
-const { Query } = require("pg");
 const sequelize = new Sequelize(config.development);
 
 // setup multer storage
@@ -13,7 +11,6 @@ const storage = multer.diskStorage({
     cb(null, "./public/uploads");
   },
   filename: (req, file, cb) => {
-    // console.log("file:", file);
     cb(null, Date.now() + file.originalname);
   },
 });
@@ -31,14 +28,10 @@ app.set("views", path.join(__dirname, "views")); //"views" (di params 1) is cons
 app.use(express.static(path.join(__dirname, "public")));
 app.use(express.urlencoded({ extended: false }));
 
-let dataProjects = [];
-
+// ROUTE HOME
 app.get("/", async (req, res) => {
   const query = "SELECT * FROM projects";
   const obj = await sequelize.query(query, { type: QueryTypes.SELECT });
-  // console.log("data dr posgres:", obj);
-  // console.log("data projects:", dataProjects);
-  // res.render("index", { dataProjects });
   res.render("index", { dataProjects: obj });
 });
 
@@ -46,27 +39,20 @@ app.get("/project", (req, res) => {
   res.render("myProject");
 });
 
-// Route Detail Project
+// ROUTE DETAIL PROJECT
 app.get("/project/detail/:id", async (req, res) => {
   const { id } = req.params;
   const query = `SELECT * FROM projects WHERE id=${id}`;
   const obj = await sequelize.query(query, { type: QueryTypes.SELECT });
-  // console.log("data detail obj: ", obj);
-
-  // const dataFilter = dataProjects[parseInt(index)];
-  // console.log(dataFilter);
-
   res.render("detailProject", { data: obj[0] });
 });
 
-// Route post form add-project
+// ROUTE FORM ADD-PROJECT
 app.post("/project", upload.single("image"), async (req, res) => {
-  // fetch data req.body dari form add project
   const data = req.body;
   const image = req.file.filename;
   console.log("req.body:", data, "req.file.name:", image);
 
-  // validasi durasi project
   let start = Date.parse(data.dateStart);
   let end = Date.parse(data.dateEnd);
   let durasi = end - start;
@@ -74,17 +60,9 @@ app.post("/project", upload.single("image"), async (req, res) => {
   let day = Math.floor(durasi / 1000 / 60 / 60 / 24);
   let month = Math.floor(day / 30);
   let year = Math.floor(month / 12);
-
   const duration = year > 0 ? `${year} tahun` : month > 0 ? `${month} bulan` : `${day} hari`;
-  // console.log("duration:", duration);
 
-  // kondisi render logo
-  // const html = data.html == "on" ? `<i class="fa-brands fa-html5 fa-2xl"></i>` : "";
-  // const css = data.css == "on" ? `<i class="fa-brands fa-css3-alt fa-2xl"></i>` : "";
-  // const js = data.js == "on" ? `<i class="fa-brands fa-js fa-2xl"></i>` : "";
-  // const react = data.react == "on" ? `<i class="fa-brands fa-react fa-2xl"></i>` : "";
   const tech = [];
-
   if (data.html == "on") {
     tech.push("'html5'");
   }
@@ -97,37 +75,17 @@ app.post("/project", upload.single("image"), async (req, res) => {
   if (data.react == "on") {
     tech.push("'react'");
   }
-  // console.log("technologies:", tech);
-
-  // const html = data.html == "on" ? `html5` : "";
-  // const css = data.css == "on" ? `css3` : "";
-  // const js = data.js == "on" ? `js` : "";
-  // const react = data.react == "on" ? `react` : "";
 
   const query = `INSERT INTO projects (title,"dateStart","dateEnd",description, technologies, image, duration) VALUES('${data.title}','${data.dateStart}','${data.dateEnd}','${data.description}',ARRAY [${tech}],'${image}','${duration}')`;
   await sequelize.query(query, { type: QueryTypes.INSERT });
-
-  // let dataSubmit = {
-  //   title: data.title,
-  //   description: data.description,
-  //   duration,
-  //   tech,
-  //   image,
-  //   dateStart: data.dateStart,
-  //   dateEnd: data.dateEnd,
-  // };
-  // dataProjects.unshift(dataSubmit);
-
   res.redirect("/");
 });
 
-// Route UPDATE project
+// ROUTE UPDATE PROJECT
 app.get("/project/edit/:id", async (req, res) => {
   const { id } = req.params;
-  // const dataFilter = dataProjects[parseInt(index)];
   const query = `SELECT * FROM projects WHERE id=${id}`;
   const obj = await sequelize.query(query, { type: QueryTypes.SELECT });
-  console.log("edit obj:", obj[0]);
 
   let a;
   let b;
@@ -146,14 +104,6 @@ app.get("/project/edit/:id", async (req, res) => {
     }
   });
   const checkedTech = { html: a, css: b, js: c, react: d };
-
-  // console.log("dataFilter:", dataFilter);
-  // const html = obj[0].technologies.html5 ? "checked" : "";
-  // const css = obj[0].technologies.css3 ? "checked" : "";
-  // const react = obj[0].technologies.react ? "checked" : "";
-  // const js = obj[0].technologies.js ? "checked" : "";
-
-  // console.log("checkedTech: ", checkedTech);
   res.render("editProject", { data: obj[0], checkedTech });
 });
 
@@ -164,7 +114,6 @@ app.post("/project/edit", upload.single("image"), async (req, res) => {
   console.log("namafile: ", namaImage);
   const image = req.file.filename;
 
-  // validasi durasi project
   let start = Date.parse(data.dateStart);
   let end = Date.parse(data.dateEnd);
   let durasi = end - start;
@@ -172,21 +121,8 @@ app.post("/project/edit", upload.single("image"), async (req, res) => {
   let day = Math.floor(durasi / 1000 / 60 / 60 / 24);
   let month = Math.floor(day / 30);
   let year = Math.floor(month / 12);
-
   const duration = year > 0 ? `${year} tahun` : month > 0 ? `${month} bulan` : `${day} hari`;
 
-  // kondisi render logo
-  // const html = data.html == "on" ? `<i class="fa-brands fa-html5 fa-2xl"></i>` : "";
-  // const css = data.css == "on" ? `<i class="fa-brands fa-css3-alt fa-2xl"></i>` : "";
-  // const js = data.js == "on" ? `<i class="fa-brands fa-js fa-2xl"></i>` : "";
-  // const react = data.react == "on" ? `<i class="fa-brands fa-react fa-2xl"></i>` : "";
-
-  // const tech = {
-  //   html,
-  //   css,
-  //   react,
-  //   js,
-  // };
   const tech = [];
 
   if (data.html == "on") {
@@ -202,36 +138,25 @@ app.post("/project/edit", upload.single("image"), async (req, res) => {
     tech.push("'react'");
   }
 
-  // const editData = {
-  //   title: data.title,
-  //   description: data.description,
-  //   duration,
-  //   tech,
-  //   image,
-  //   dateStart: data.dateStart,
-  //   dateEnd: data.dateEnd,
-  // };
-
   const query = `UPDATE projects SET title='${data.title}',"dateStart"='${data.dateStart}',"dateEnd"='${data.dateEnd}',description='${data.description}', technologies=ARRAY [${tech}], image='${image}', duration='${duration}' WHERE id=${id}`;
   await sequelize.query(query, { type: QueryTypes.UPDATE });
-
-  // dataProjects.splice(index, 1, editData);
   res.redirect("/");
 });
 
-// Route DELETE Project
+// ROUTE DELETE PROJECT
 app.get("/project/delete/:id", async (req, res) => {
   const { id } = req.params;
-  // dataProjects.splice(index, 1);
   const query = `DELETE FROM projects WHERE id=${id}`;
   await sequelize.query(query, { type: QueryTypes.DELETE });
-
   res.redirect("/");
 });
 
+// ROUTE CONTACT
 app.get("/contact", (req, res) => {
   res.render("contact");
 });
+
+// ROUTE TESTIMONIALS
 app.get("/testimonials", (req, res) => {
   res.render("testimonials");
 });
