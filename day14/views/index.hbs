@@ -90,27 +90,23 @@
         {{#each dataProjects}}
           <div class="card" style="width: 18rem;">
             <div class="image">
-              <img src="/uploads/{{{this.image}}}" class="card-img-top" alt="image" />
+              <img src="/uploads/{{this.image}}" class="card-img-top" alt="image" />
             </div>
             <div class="card-body project-title">
               <div class="card-title">
-                <a href="/project/detail/{{@index}}"><h5>{{this.title}}</h5></a>
+                <a href="/project/detail/{{this.id}}"><h5>{{this.title}}</h5></a>
                 <p>{{this.duration}}</p>
               </div>
               <p class="card-text">{{this.description}}</p>
               <div class="logo">
                 {{#each technologies}}
-                  <i class="fa-brands fa-{{{this}}} fa-2xl"></i>
+                  <i class="fa-brands fa-{{this}} fa-2xl"></i>
                 {{/each}}
-                {{!-- {{{tech.html}}}
-                {{{tech.css}}}
-                {{{tech.react}}}
-                {{{tech.js}}} --}}
               </div>
 
               <div class="btn-card">
-                <a href="/project/edit/{{@index}}" class="btn btn-primary">Edit</a>
-                <a href="/project/delete/{{@index}}" class="btn btn-primary">Delete</a>
+                <a href="/project/edit/{{this.id}}" class="btn btn-primary">Edit</a>
+                <a href="/project/delete/{{this.id}}" class="btn btn-primary">Delete</a>
               </div>
             </div>
           </div>

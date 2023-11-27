@@ -50,7 +50,7 @@
 
         <!-- Form Control Bootstrap -->
         <form method="post" action="/project/edit" class="form" enctype="multipart/form-data">
-          <input type="hidden" name="index" value="{{index}}" />
+          <input type="hidden" name="id" value={{data.id}} />
           <div class="mb-3">
             <label for="inputName" class="form-label">Project Name</label>
             <input type="text" class="form-control" id="inputName" name="title" value="{{data.title}}" />
@@ -62,13 +62,14 @@
             </div>
             <div class="mb-3 date-kiri">
               <label for="inputDateEnd" class="form-label">Date End</label>
-              <input type="date" class="form-control" id="inputDateEnd" name="dateEnd" value="{{data.dateEnd}}" />
+              <input type="date" class="form-control" id="inputDateEnd" name="dateEnd" value={{data.dateEnd}} />
             </div>
           </div>
           <div class="mb-3">
             <label for="inputDescription" class="form-label">Description</label>
             <textarea class="form-control" id="inputDescription" rows="8" placeholder="Write your project detail here!" name="description">{{data.description}}</textarea>
           </div>
+          <p>{{data.title}}</p>
 
           <div class="mb-3">
             <label>Technologies</label>

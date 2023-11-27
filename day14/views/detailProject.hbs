@@ -46,25 +46,29 @@
       </div>
       <div class="detail-title">
         <div class="project-image">
-          <img src="/uploads/{{{data.image}}}" />
+          <img src="/uploads/{{data.image}}" />
         </div>
         <div class="project-desc">
           <div class="project-duration">
             <h3>Duration</h3>
             <div class="tanggal-project">
               <i class="fa-solid fa-calendar-days fa-xl"></i>
-              <p class="session-date" class="tanggal-span">{{{data.dateStart}}} TO {{{data.dateEnd}}}</p>
+              <p class="session-date" class="tanggal-span">{{data.dateStart}} TO {{data.dateEnd}}</p>
             </div>
 
             <div class="bulan-project">
               <i class="fa-regular fa-clock fa-xl"></i>
-              <p class="session-month">{{{data.duration}}}</p>
+              <p class="session-month">{{data.duration}}</p>
             </div>
           </div>
           <div class="project-tech">
             <h3>Technologies</h3>
             <div class="project-tech-icons">
-              {{#if data.tech.html}}
+              {{#each data.technologies}}
+                <i class="fa-brands fa-{{this}} fa-2xl"></i>
+                <p>{{this}}</p>
+              {{/each}}
+              {{!-- {{#if data.tech.html}}
                 {{{data.tech.html}}}
                 <p>html</p>
               {{/if}}
@@ -82,7 +86,7 @@
               {{#if data.tech.js}}
                 {{{data.tech.js}}}
                 <p>js</p>
-              {{/if}}
+              {{/if}} --}}
             </div>
           </div>
         </div>
