@@ -51,7 +51,6 @@ app.get("/project/detail/:id", async (req, res) => {
 app.post("/project", upload.single("image"), async (req, res) => {
   const data = req.body;
   const image = req.file.filename;
-  console.log("req.body:", data, "req.file.name:", image);
 
   let start = Date.parse(data.dateStart);
   let end = Date.parse(data.dateEnd);
@@ -110,8 +109,6 @@ app.get("/project/edit/:id", async (req, res) => {
 app.post("/project/edit", upload.single("image"), async (req, res) => {
   const { id } = req.body;
   const data = req.body;
-  const namaImage = req.file;
-  console.log("namafile: ", namaImage);
   const image = req.file.filename;
 
   let start = Date.parse(data.dateStart);
