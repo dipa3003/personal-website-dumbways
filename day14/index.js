@@ -51,7 +51,7 @@ app.get("/project/detail/:id", async (req, res) => {
   const { id } = req.params;
   const query = `SELECT * FROM projects WHERE id=${id}`;
   const obj = await sequelize.query(query, { type: QueryTypes.SELECT });
-  // console.log("data obj: ", obj);
+  // console.log("data detail obj: ", obj);
 
   // const dataFilter = dataProjects[parseInt(index)];
   // console.log(dataFilter);
@@ -63,7 +63,7 @@ app.get("/project/detail/:id", async (req, res) => {
 app.post("/project", upload.single("image"), async (req, res) => {
   // fetch data req.body dari form add project
   const data = req.body;
-  const image = `${req.file.filename}`;
+  const image = req.file.filename;
   console.log("req.body:", data, "req.file.name:", image);
 
   // validasi durasi project
@@ -126,22 +126,42 @@ app.get("/project/edit/:id", async (req, res) => {
   const { id } = req.params;
   // const dataFilter = dataProjects[parseInt(index)];
   const query = `SELECT * FROM projects WHERE id=${id}`;
-  const obj = await sequelize.query(query, { type: QueryTypes.UPDATE });
+  const obj = await sequelize.query(query, { type: QueryTypes.SELECT });
   console.log("edit obj:", obj[0]);
+
+  let a;
+  let b;
+  let c;
+  let d;
+
+  obj[0].technologies.forEach((item) => {
+    if (item == "html5") {
+      a = "checked";
+    } else if (item == "css3") {
+      b = "checked";
+    } else if (item == "js") {
+      c = "checked";
+    } else if (item == "react") {
+      d = "checked";
+    }
+  });
+  const checkedTech = { html: a, css: b, js: c, react: d };
+
   // console.log("dataFilter:", dataFilter);
   // const html = obj[0].technologies.html5 ? "checked" : "";
   // const css = obj[0].technologies.css3 ? "checked" : "";
   // const react = obj[0].technologies.react ? "checked" : "";
   // const js = obj[0].technologies.js ? "checked" : "";
 
-  // const checkedTech = { html, css, react, js };
   // console.log("checkedTech: ", checkedTech);
-  res.render("editProject", { data: obj[0] });
+  res.render("editProject", { data: obj[0], checkedTech });
 });
 
-app.post("/project/edit", upload.single("image"), (req, res) => {
-  const { index } = req.body;
+app.post("/project/edit", upload.single("image"), async (req, res) => {
+  const { id } = req.body;
   const data = req.body;
+  const namaImage = req.file;
+  console.log("namafile: ", namaImage);
   const image = req.file.filename;
 
   // validasi durasi project
@@ -156,29 +176,46 @@ app.post("/project/edit", upload.single("image"), (req, res) => {
   const duration = year > 0 ? `${year} tahun` : month > 0 ? `${month} bulan` : `${day} hari`;
 
   // kondisi render logo
-  const html = data.html == "on" ? `<i class="fa-brands fa-html5 fa-2xl"></i>` : "";
-  const css = data.css == "on" ? `<i class="fa-brands fa-css3-alt fa-2xl"></i>` : "";
-  const js = data.js == "on" ? `<i class="fa-brands fa-js fa-2xl"></i>` : "";
-  const react = data.react == "on" ? `<i class="fa-brands fa-react fa-2xl"></i>` : "";
+  // const html = data.html == "on" ? `<i class="fa-brands fa-html5 fa-2xl"></i>` : "";
+  // const css = data.css == "on" ? `<i class="fa-brands fa-css3-alt fa-2xl"></i>` : "";
+  // const js = data.js == "on" ? `<i class="fa-brands fa-js fa-2xl"></i>` : "";
+  // const react = data.react == "on" ? `<i class="fa-brands fa-react fa-2xl"></i>` : "";
 
-  const tech = {
-    html,
-    css,
-    react,
-    js,
-  };
+  // const tech = {
+  //   html,
+  //   css,
+  //   react,
+  //   js,
+  // };
+  const tech = [];
 
-  const editData = {
-    title: data.title,
-    description: data.description,
-    duration,
-    tech,
-    image,
-    dateStart: data.dateStart,
-    dateEnd: data.dateEnd,
-  };
+  if (data.html == "on") {
+    tech.push("'html5'");
+  }
+  if (data.css == "on") {
+    tech.push("'css3'");
+  }
+  if (data.js == "on") {
+    tech.push("'js'");
+  }
+  if (data.react == "on") {
+    tech.push("'react'");
+  }
 
-  dataProjects.splice(index, 1, editData);
+  // const editData = {
+  //   title: data.title,
+  //   description: data.description,
+  //   duration,
+  //   tech,
+  //   image,
+  //   dateStart: data.dateStart,
+  //   dateEnd: data.dateEnd,
+  // };
+
+  const query = `UPDATE projects SET title='${data.title}',"dateStart"='${data.dateStart}',"dateEnd"='${data.dateEnd}',description='${data.description}', technologies=ARRAY [${tech}], image='${image}', duration='${duration}' WHERE id=${id}`;
+  await sequelize.query(query, { type: QueryTypes.UPDATE });
+
+  // dataProjects.splice(index, 1, editData);
   res.redirect("/");
 });
 
