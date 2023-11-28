@@ -4,6 +4,7 @@ const multer = require("multer");
 const config = require("./config/config.json");
 const { Sequelize, QueryTypes } = require("sequelize");
 const sequelize = new Sequelize(config.development);
+const bcrypt = require("bcrypt");
 
 // setup multer storage
 const storage = multer.diskStorage({
@@ -152,7 +153,6 @@ app.get("/project/delete/:id", async (req, res) => {
 app.get("/contact", (req, res) => {
     res.render("contact");
 });
-
 // ROUTE TESTIMONIALS
 app.get("/testimonials", (req, res) => {
     res.render("testimonials");
@@ -161,6 +161,18 @@ app.get("/testimonials", (req, res) => {
 // ROUTE REGISTER
 app.get("/register", (req, res) => {
     res.render("register");
+});
+app.post("/register", (req, res) => {
+    const { name, email, password } = req.body;
+
+    const salt = 10;
+    bcrypt.hash(password, salt, (err, hash) => {
+        console.log("hash pw:", hash);
+
+        const query = `INSERT INTO users`;
+    });
+
+    res.redirect("/");
 });
 
 // ROUTE LOGIN

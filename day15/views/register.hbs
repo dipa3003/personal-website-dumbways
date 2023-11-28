@@ -58,21 +58,21 @@
                     <h1>REGISTER YOUR ACCOUNT</h1>
                 </div>
 
-                <form class="form">
+                <form method="post" action="/register" class="form">
                     <div class="form-group mb-3">
                         <label for="name">Name</label>
-                        <input type="text" class="form-control" id="name" />
+                        <input type="text" class="form-control" id="name" name="name" />
                     </div>
                     <div class="form-group mb-3">
                         <label for="email">Email</label>
-                        <input type="text" class="form-control" id="email" />
+                        <input type="text" class="form-control" id="email" name="email" />
                     </div>
                     <div class="form-group mb-3">
                         <label for="password">Password</label>
-                        <input type="password" class="form-control" id="password" />
+                        <input type="password" class="form-control" id="password" name="password" />
                     </div>
                     <div class="btn-submit">
-                        <button type="submit" class="btn btn-primary">Submit</button>
+                        <button class="btn btn-primary">Submit</button>
                     </div>
 
                 </form>
