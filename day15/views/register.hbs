@@ -2,8 +2,8 @@
     <head>
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <link rel="stylesheet" href="/css/detailProject.css" />
-        <title>My Project</title>
+        <title>Register</title>
+        <link rel="stylesheet" href="/css/register.css" />
         <link
             rel="stylesheet"
             href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
@@ -11,6 +11,8 @@
             crossorigin="anonymous"
             referrerpolicy="no-referrer"
         />
+        {{! bootstrap css }}
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous" />
     </head>
     <body>
         <nav>
@@ -50,43 +52,33 @@
             </div>
         </nav>
 
-        <div class="container-detail">
-            <div class="detail-project-title">
-                <h1 class="session-title">{{data.title}}</h1>
-            </div>
-            <div class="detail-title">
-                <div class="project-image">
-                    <img src="/uploads/{{data.image}}" />
+        <div class="component-form">
+            <div class="container">
+                <div class="title">
+                    <h1>REGISTER YOUR ACCOUNT</h1>
                 </div>
-                <div class="project-desc">
-                    <div class="project-duration">
-                        <h3>Duration</h3>
-                        <div class="tanggal-project">
-                            <i class="fa-solid fa-calendar-days fa-xl"></i>
-                            <p class="session-date" class="tanggal-span">{{data.dateStart}} TO {{data.dateEnd}}</p>
-                        </div>
 
-                        <div class="bulan-project">
-                            <i class="fa-regular fa-clock fa-xl"></i>
-                            <p class="session-month">{{data.duration}}</p>
-                        </div>
+                <form class="form">
+                    <div class="form-group mb-3">
+                        <label for="name">Name</label>
+                        <input type="text" class="form-control" id="name" />
                     </div>
-                    <div class="project-tech">
-                        <h3>Technologies</h3>
-                        <div class="project-tech-icons">
-                            {{#each data.technologies}}
-                                <i class="fa-brands fa-{{this}} fa-2xl"></i>
-                                <p>{{this}}</p>
-                            {{/each}}
-                        </div>
+                    <div class="form-group mb-3">
+                        <label for="email">Email</label>
+                        <input type="text" class="form-control" id="email" />
                     </div>
-                </div>
-            </div>
-            <div class="detail-content">
-                <p class="session-content">{{data.description}}</p>
+                    <div class="form-group mb-3">
+                        <label for="password">Password</label>
+                        <input type="password" class="form-control" id="password" />
+                    </div>
+                    <div class="btn-submit">
+                        <button type="submit" class="btn btn-primary">Submit</button>
+                    </div>
+
+                </form>
             </div>
         </div>
-        {{! <script src="/js/detailProject.js"></script> }}
         <script src="/js/navbar.js"></script>
+
     </body>
 </html>
