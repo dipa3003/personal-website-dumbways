@@ -1,0 +1,124 @@
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Personal Website</title>
+    <link rel="stylesheet" href="/css/style.css" />
+    <link rel="stylesheet" href="/css/myProject.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
+      integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous" />
+  </head>
+  <body>
+    <nav>
+      <div class="main-navbar">
+        <img src="/img/dumbways-logo.png" alt="logo dumbways" />
+        <div class="navigations">
+          <div class="nav-list">
+            <a href="/">Home</a>
+            <a href="/project">Add Project</a>
+            <a href="/testimonials">Testimonials</a>
+          </div>
+          <div class="btn-contact">
+            <a href="/contact" class="btn-navbar">Contact Me</a>
+          </div>
+        </div>
+        <div class="humburger">
+          <i class="fa-solid fa-bars fa-2xl" onclick="showNav()" id="humburger"></i>
+        </div>
+      </div>
+
+      <!-- navbar when humburger onclick -->
+      <div class="humburger-navbar">
+        <a href="/">Home</a>
+        <a href="/project">Add Project</a>
+        <a href="/contact">Contact Me</a>
+        <a href="/testimonials">Testimonials</a>
+      </div>
+    </nav>
+
+    <div class="home">
+      <div class="describe">
+        <div class="describe-detail">
+          <h1>Hey, I`m Dipa fullstack-developer</h1>
+          <p>
+            After graduating from UPNVJ in september 2022, I decided to pursue a career in technology and started coding and website development. I am currently deepening my knowledge and skills by joining a bootcamp to become a great
+            fullstack developer. My current focus is to explore popular tools that will help me in the process of finding a job in my dream company.
+          </p>
+        </div>
+
+        <div class="info-detail">
+          <button class="contact">Contact</button>
+          <div class="download">
+            <p>download CV <i class="fa-solid fa-download"></i></p>
+            <!-- <img src="icons/download.png" alt="download" /> -->
+          </div>
+        </div>
+
+        <div class="icons">
+          <img src="/icons/linkedin.png" alt="linkedin" />
+          <img src="/icons/instagram.png" alt="instagram" />
+          <img src="/icons/facebook.png" alt="facebook" />
+          <img src="/icons/twitter.png" alt="twitter" />
+        </div>
+      </div>
+
+      <!-- Profil Card with Bootstrap -->
+      <div class="card profil" style="width: 18rem">
+        <img src="/img/foto.jpg" class="card-img-top" alt="Profil Picture" />
+        <div class="card-body">
+          <h5 class="card-title">Parar Tria Dipa G</h5>
+          <p class="card-text">Fullstack Developer</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="container-projectList">
+      <div class="title">
+        <h1>MY PROJECT</h1>
+      </div>
+      <!-- Cards will be here -->
+      <div class="container-cards">
+
+        {{! looping card project here }}
+        {{#each dataProjects}}
+          <div class="card" style="width: 18rem;">
+            <div class="image">
+              <img src="/uploads/{{this.image}}" class="card-img-top" alt="image" />
+            </div>
+            <div class="card-body project-title">
+              <div class="card-title">
+                <a href="/project/detail/{{this.id}}"><h5>{{this.title}}</h5></a>
+                <p>{{this.duration}}</p>
+              </div>
+              <p class="card-text">{{this.description}}</p>
+              <div class="logo">
+                {{#each technologies}}
+                  <i class="fa-brands fa-{{this}} fa-2xl"></i>
+                {{/each}}
+              </div>
+
+              <div class="btn-card">
+                <a href="/project/edit/{{this.id}}" class="btn btn-primary">Edit</a>
+                <a href="/project/delete/{{this.id}}" class="btn btn-primary">Delete</a>
+              </div>
+            </div>
+          </div>
+        {{/each}}
+        {{! looping card project end }}
+      </div>
+    </div>
+
+    <script src="/js/navbar.js"></script>
+    <script src="/js/myProject.js"></script>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+  </body>
+</html>
