@@ -48,8 +48,16 @@ app.use(flash());
 
 // ROUTE HOME
 app.get("/", async (req, res) => {
-    const query = "SELECT * FROM projects";
+    if (!req.session.isLogin) {
+        req.flash("danger", "Login required for access Home!");
+        return res.redirect("/login");
+    }
+    const userIsLogin = req.session.isLoginId;
+    const query = `SELECT projects.id, projects.title, projects."dateStart", projects."dateEnd", projects.description, projects.technologies, projects.image, projects.duration, users.name
+    FROM projects LEFT JOIN users ON users.id = projects.author_id WHERE projects.author_id=${userIsLogin}`;
+
     const obj = await sequelize.query(query, { type: QueryTypes.SELECT });
+    console.log("data obj left join: ", obj);
 
     console.log("req.session: ", req.session);
     const isLogin = req.session.isLogin;
@@ -74,15 +82,21 @@ app.get("/project/detail/:id", async (req, res) => {
     const isLogin = req.session.isLogin;
     const user = req.session.user;
     const { id } = req.params;
-    const query = `SELECT * FROM projects WHERE id=${id}`;
+    // const userIsLogin = req.session.isLoginId;
+
+    const query = `SELECT projects.id, projects.title, projects."dateStart", projects."dateEnd", projects.description, projects.technologies, projects.image, projects.duration, users.name
+    FROM projects LEFT JOIN users ON users.id = projects.author_id WHERE projects.id=${id}`;
+    // const query = `SELECT * FROM projects WHERE id=${id}`;
     const obj = await sequelize.query(query, { type: QueryTypes.SELECT });
     res.render("detailProject", { data: obj[0], isLogin, user });
 });
 
 // ROUTE FORM ADD-PROJECT
 app.post("/project", upload.single("image"), async (req, res) => {
+    const author_id = req.session.user.id;
     const data = req.body;
     const image = req.file.filename;
+    console.log("image name:", image);
 
     let start = Date.parse(data.dateStart);
     let end = Date.parse(data.dateEnd);
@@ -107,7 +121,7 @@ app.post("/project", upload.single("image"), async (req, res) => {
         tech.push("'react'");
     }
 
-    const query = `INSERT INTO projects (title,"dateStart","dateEnd",description, technologies, image, duration) VALUES('${data.title}','${data.dateStart}','${data.dateEnd}','${data.description}',ARRAY [${tech}],'${image}','${duration}')`;
+    const query = `INSERT INTO projects (title,"dateStart","dateEnd",description, technologies, image, duration, author_id) VALUES('${data.title}','${data.dateStart}','${data.dateEnd}','${data.description}',ARRAY [${tech}],'${image}','${duration}', '${author_id}')`;
     await sequelize.query(query, { type: QueryTypes.INSERT });
     req.flash("success", "Successfully add project!");
     res.redirect("/");
@@ -265,9 +279,11 @@ app.post("/login", async (req, res) => {
         console.log("Login success! password compare success");
         req.flash("success", "Login success!");
         req.session.isLogin = true;
+        req.session.isLoginId = obj[0].id;
         req.session.user = {
             name: obj[0].name,
             email: obj[0].email,
+            id: obj[0].id,
         };
         res.redirect("/");
     });
@@ -277,7 +293,7 @@ app.post("/login", async (req, res) => {
 app.get("/logout", (req, res) => {
     req.session.isLogin = false;
     req.flash("success", "Logout success!");
-    res.redirect("/");
+    res.redirect("/login");
 });
 
 app.listen(port, () => {
