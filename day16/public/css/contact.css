@@ -1,0 +1,378 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins&display=swap");
+
+* {
+    margin: 0;
+    font-family: "Poppins", sans-serif;
+}
+body {
+    background-color: white;
+}
+
+/* Style navbar */
+nav {
+    background-color: whitesmoke;
+}
+.navigations {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+}
+.main-navbar {
+    display: flex;
+    padding: 20px 0;
+    margin-left: 60px;
+    margin-right: 60px;
+}
+.nav-list {
+    display: flex;
+    flex-direction: row;
+    flex-grow: 2;
+    gap: 50px;
+    margin-left: 40px;
+}
+.nav-list a {
+    text-decoration: none;
+    color: black;
+    display: flex;
+    align-items: center;
+    font-weight: bold;
+}
+.nav-list a:hover {
+    color: orangered;
+}
+.nav-auth {
+    display: flex;
+}
+.auth {
+    display: flex;
+    gap: 10px;
+    margin-left: 20px;
+}
+.auth p {
+    display: flex;
+    align-items: center;
+    margin-bottom: 0;
+}
+.auth a {
+    text-decoration: none;
+    color: black;
+    align-items: center;
+    display: flex;
+    font-weight: bold;
+    color: orangered;
+}
+.main-navbar img {
+    height: 40px;
+}
+.btn-contact {
+    display: flex;
+    /* flex-grow: 1; */
+    justify-content: flex-end;
+    margin-left: 20px;
+}
+.humburger {
+    flex-grow: 1;
+    justify-content: flex-end;
+    align-items: center;
+    display: none;
+}
+.btn-navbar {
+    font-weight: bold;
+    letter-spacing: 1px;
+    border-radius: 10px;
+    background-color: black;
+    color: white;
+    cursor: pointer;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    padding: 6px 10px;
+}
+.btn-navbar:hover {
+    color: white;
+    background-color: orangered;
+}
+/* style Form Contact me */
+.component-form {
+    display: flex;
+    justify-content: center;
+    background-color: #1b3c35;
+    color: white;
+}
+.container {
+    width: 400px;
+    display: flex;
+    flex-direction: column;
+}
+.title {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 20px;
+    margin-top: 50px;
+}
+.form {
+    display: flex;
+    flex-direction: column;
+    margin: 0 100px;
+}
+.input-form {
+    margin-bottom: 15px;
+    padding: 10px;
+    border-radius: 5px;
+    border: none;
+}
+label {
+    font-weight: bold;
+    margin-bottom: 5px;
+    font-size: large;
+}
+.btn-submit {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+.btn-submit button {
+    border-radius: 10px;
+    padding: 6px 15px;
+    background-color: black;
+    color: white;
+    cursor: pointer;
+}
+.btn-submit button:hover {
+    color: white;
+    background-color: orangered;
+}
+
+/* Responsive extra large devices (993px and up) */
+@media only screen and (min-width: 993px) {
+    .container-tech {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        margin-bottom: 20px;
+    }
+    .kanan,
+    .kiri {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+    }
+    .check-html,
+    .check-react {
+        margin-bottom: 10px;
+    }
+    .main-navbar {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+    }
+    .navigations {
+        display: flex;
+        flex-direction: row;
+    }
+
+    .describe-detail p {
+        text-align: justify;
+    }
+    .humburger-navbar {
+        display: none;
+    }
+}
+
+/* Responsinve Large devices (laptop/desktop, 769px and 992px) */
+@media only screen and (max-width: 992px) {
+    /* styling card list */
+    .container-cards {
+        margin: 20px;
+    }
+    .card {
+        width: 35%;
+    }
+    .btn-card {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+    }
+    .btn-card button {
+        width: 40%;
+        padding: 5px 20px;
+        border-radius: 10px;
+        cursor: pointer;
+        background-color: black;
+        color: white;
+    }
+    .container-tech {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        margin-bottom: 20px;
+    }
+    .kanan,
+    .kiri {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+    }
+    .check-html,
+    .check-react {
+        margin-bottom: 10px;
+    }
+    .main-navbar {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+    }
+    .navigations {
+        display: flex;
+        flex-direction: row;
+    }
+
+    .describe-detail p {
+        text-align: justify;
+    }
+    .humburger-navbar {
+        display: none;
+    }
+}
+
+/* Responsive medium devices (portrait tablet, larger phones, 768px andn up) */
+@media only screen and (max-width: 768px) {
+    /* styling card list */
+    .container-cards {
+        margin: 20px;
+    }
+    .card {
+        width: 50%;
+    }
+    .btn-card {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+    }
+    .btn-card button {
+        padding: 6px 20px;
+        width: 40%;
+        text-align: center;
+    }
+
+    .container-tech {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        margin-bottom: 20px;
+    }
+    .kanan,
+    .kiri {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+    }
+    .check-html,
+    .check-react {
+        margin-bottom: 10px;
+    }
+    .main-navbar {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+    }
+    .navigations {
+        display: flex;
+        flex-direction: row;
+    }
+
+    .humburger-navbar {
+        display: none;
+    }
+}
+
+/* Responsive extra small devices (phones, 735px and down) */
+@media only screen and (max-width: 735px) {
+    .title {
+        margin-top: 20px;
+    }
+    /* styling form add project */
+    .form {
+        margin: 0 10px;
+    }
+    .container {
+        margin: 20px;
+    }
+    .container-date {
+        display: flex;
+        flex-direction: row;
+    }
+    .date-kanan {
+        width: 40%;
+    }
+    .date-kiri {
+        width: 40%;
+    }
+    .date-kanan input,
+    .date-kiri input {
+        width: 80%;
+    }
+    .container-tech {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        margin-bottom: 20px;
+    }
+    .kanan,
+    .kiri {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+    }
+    .check-html,
+    .check-react {
+        margin-bottom: 10px;
+    }
+    /* styling card list */
+    .container-cards {
+        margin: 20px;
+    }
+    .card {
+        width: 80%;
+    }
+    .btn-card {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+    }
+    .btn-card button {
+        padding: 6px 20px;
+        width: 40%;
+        text-align: center;
+    }
+
+    /* styling navbar */
+    .main-navbar {
+        margin: 0 30px;
+    }
+    .humburger {
+        display: flex;
+    }
+    .navigations {
+        display: none;
+    }
+    .humburger-active {
+        display: flex;
+    }
+    .humburger-navbar {
+        flex-direction: column;
+    }
+    .humburger-navbar a {
+        text-decoration: none;
+        color: white;
+        padding: 10px;
+        border: 2px solid white;
+        background-color: #9a9a9a;
+        text-align: center;
+        font-weight: bold;
+    }
+    .humburger-navbar :nth-child(3) {
+        background-color: orangered;
+    }
+}

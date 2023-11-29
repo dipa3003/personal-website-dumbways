@@ -1,0 +1,100 @@
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <link rel="stylesheet" href="/css/detailProject.css" />
+        <title>My Project</title>
+        <link
+            rel="stylesheet"
+            href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
+            integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA=="
+            crossorigin="anonymous"
+            referrerpolicy="no-referrer"
+        />
+    </head>
+    <body>
+        <nav>
+            <div class="main-navbar">
+                <img src="/img/dumbways-logo.png" alt="logo dumbways" />
+                <div class="navigations">
+                    <div class="nav-list">
+                        <a href="/">Home</a>
+                        <a href="/project">Add Project</a>
+                        <a href="/testimonials">Testimonials</a>
+                    </div>
+                    <div class="nav-auth">
+                        <div class="auth">
+                            {{#if isLogin}}
+                                <p>Hi {{user.name}}</p>
+                                <a href="/logout">Logout</a>
+                            {{else}}
+                                <a href="/register">Register</a>
+                                <a href="/login">Login</a>
+                            {{/if}}
+                        </div>
+                        <div class="btn-contact">
+                            <a href="/contact" class="btn-navbar">Contact Me</a>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="humburger">
+                    <i class="fa-solid fa-bars fa-2xl" onclick="showNav()" id="humburger"></i>
+                </div>
+            </div>
+
+            <!-- navbar when humburger onclick -->
+            <div class="humburger-navbar">
+                <a href="/">Home</a>
+                <a href="/project">Add Project</a>
+                <a href="/contact">Contact Me</a>
+                <a href="/testimonials">Testimonials</a>
+                {{#if isLogin}}
+                    <a href="/logout">Logout</a>
+                {{else}}
+                    <a href="/register">Register</a>
+                    <a href="/login">Login</a>
+                {{/if}}
+            </div>
+        </nav>
+
+        <div class="container-detail">
+            <div class="detail-project-title">
+                <h1 class="session-title">{{data.title}}</h1>
+            </div>
+            <div class="detail-title">
+                <div class="project-image">
+                    <img src="/uploads/{{data.image}}" />
+                </div>
+                <div class="project-desc">
+                    <div class="project-duration">
+                        <h3>Duration</h3>
+                        <div class="tanggal-project">
+                            <i class="fa-solid fa-calendar-days fa-xl"></i>
+                            <p class="session-date" class="tanggal-span">{{data.dateStart}} TO {{data.dateEnd}}</p>
+                        </div>
+
+                        <div class="bulan-project">
+                            <i class="fa-regular fa-clock fa-xl"></i>
+                            <p class="session-month">{{data.duration}}</p>
+                        </div>
+                    </div>
+                    <div class="project-tech">
+                        <h3>Technologies</h3>
+                        <div class="project-tech-icons">
+                            {{#each data.technologies}}
+                                <i class="fa-brands fa-{{this}} fa-2xl"></i>
+                                <p>{{this}}</p>
+                            {{/each}}
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="detail-content">
+                <p class="session-content">{{data.description}}</p>
+            </div>
+        </div>
+        {{! <script src="/js/detailProject.js"></script> }}
+        <script src="/js/navbar.js"></script>
+    </body>
+</html>
