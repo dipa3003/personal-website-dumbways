@@ -5,6 +5,7 @@ const config = require("./config/config.json");
 const { Sequelize, QueryTypes } = require("sequelize");
 const sequelize = new Sequelize(config.development);
 const bcrypt = require("bcrypt");
+const session = require("express-session");
 
 // setup multer storage
 const storage = multer.diskStorage({
@@ -29,11 +30,31 @@ app.set("views", path.join(__dirname, "views")); //"views" (di params 1) is cons
 app.use(express.static(path.join(__dirname, "public")));
 app.use(express.urlencoded({ extended: false }));
 
+// middleware session
+app.use(
+    session({
+        name: "data user",
+        secret: "secret",
+        resave: false,
+        saveUninitialized: true,
+        cookie: {
+            secure: false,
+            maxAge: 1000 * 60 * 60 * 24,
+        },
+    })
+);
+
 // ROUTE HOME
 app.get("/", async (req, res) => {
     const query = "SELECT * FROM projects";
     const obj = await sequelize.query(query, { type: QueryTypes.SELECT });
-    res.render("index", { dataProjects: obj });
+
+    console.log("req.session: ", req.session);
+    const isLogin = req.session.isLogin;
+    console.log("islogin: ", isLogin);
+    const user = req.session.user;
+    console.log("data session:", user);
+    res.render("index", { dataProjects: obj, isLogin, user });
 });
 
 app.get("/project", (req, res) => {
@@ -166,18 +187,54 @@ app.post("/register", (req, res) => {
     const { name, email, password } = req.body;
 
     const salt = 10;
-    bcrypt.hash(password, salt, (err, hash) => {
-        console.log("hash pw:", hash);
+    bcrypt.hash(password, salt, async (err, hash) => {
+        if (err) {
+            console.error("Password failed to Encrypted!");
+            return res.redirect("/register");
+        }
 
-        const query = `INSERT INTO users`;
+        console.log("hash pw:", hash);
+        const query = `INSERT INTO users (name,email,password) VALUES('${name}','${email}','${hash}')`;
+        await sequelize.query(query, { type: QueryTypes.SELECT });
     });
 
+    console.log("Success register");
     res.redirect("/");
 });
 
 // ROUTE LOGIN
 app.get("/login", (req, res) => {
     res.render("login");
+});
+app.post("/login", async (req, res) => {
+    const { email, password } = req.body;
+
+    const query = `SELECT * FROM users WHERE email='${email}'`;
+    const obj = await sequelize.query(query, { type: QueryTypes.SELECT });
+    if (!obj.length) {
+        console.error("user not registered!");
+        return res.redirect("/login");
+    }
+
+    bcrypt.compare(password, obj[0].password, (err, result) => {
+        if (err) {
+            console.error("Login failed: Internal server error!");
+            return res.redirect("/login");
+        }
+        console.log("result compare password:", result);
+        if (!result) {
+            console.error("Password is wrong!");
+            return res.redirect("/login");
+        }
+        console.log("Login success! password compare success");
+        // console.log("req.session: ", req.session);
+        req.session.isLogin = true;
+        req.session.user = {
+            name: obj[0].name,
+            email: obj[0].email,
+        };
+        res.redirect("/");
+    });
 });
 
 app.listen(port, () => {
