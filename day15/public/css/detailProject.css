@@ -48,6 +48,11 @@ nav {
     gap: 10px;
     margin-left: 20px;
 }
+.auth p {
+    display: flex;
+    align-items: center;
+    margin-bottom: 0;
+}
 .auth a {
     text-decoration: none;
     color: black;

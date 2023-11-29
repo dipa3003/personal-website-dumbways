@@ -61,6 +61,13 @@
             </div>
         </nav>
 
+        {{#if messages.success}}
+            <div class="alert alert-success" role="alert">
+                {{messages.success}}
+            </div>
+
+        {{/if}}
+
         <div class="home">
             <div class="describe">
                 <div class="describe-detail">
@@ -126,6 +133,7 @@
                                 <a href="/project/edit/{{this.id}}" class="btn btn-primary">Edit</a>
                                 <a href="/project/delete/{{this.id}}" class="btn btn-primary">Delete</a>
                             </div>
+
                         </div>
                     </div>
                 {{/each}}

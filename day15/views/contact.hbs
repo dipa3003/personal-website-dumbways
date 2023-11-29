@@ -28,9 +28,13 @@
                     </div>
                     <div class="nav-auth">
                         <div class="auth">
-                            <a href="/register">Register </a>
-
-                            <a href="/login">Login</a>
+                            {{#if isLogin}}
+                                <p>Hi {{user.name}}</p>
+                                <a href="/logout">Logout</a>
+                            {{else}}
+                                <a href="/register">Register</a>
+                                <a href="/login">Login</a>
+                            {{/if}}
                         </div>
                         <div class="btn-contact">
                             <a href="/contact" class="btn-navbar">Contact Me</a>
@@ -49,8 +53,12 @@
                 <a href="/project">Add Project</a>
                 <a href="/contact">Contact Me</a>
                 <a href="/testimonials">Testimonials</a>
-                <a href="/register">Register</a>
-                <a href="/login">Login</a>
+                {{#if isLogin}}
+                    <a href="/logout">Logout</a>
+                {{else}}
+                    <a href="/register">Register</a>
+                    <a href="/login">Login</a>
+                {{/if}}
             </div>
         </nav>
 

@@ -6,6 +6,7 @@ const { Sequelize, QueryTypes } = require("sequelize");
 const sequelize = new Sequelize(config.development);
 const bcrypt = require("bcrypt");
 const session = require("express-session");
+const flash = require("express-flash");
 
 // setup multer storage
 const storage = multer.diskStorage({
@@ -43,6 +44,7 @@ app.use(
         },
     })
 );
+app.use(flash());
 
 // ROUTE HOME
 app.get("/", async (req, res) => {
@@ -58,15 +60,23 @@ app.get("/", async (req, res) => {
 });
 
 app.get("/project", (req, res) => {
-    res.render("myProject");
+    const isLogin = req.session.isLogin;
+    const user = req.session.user;
+    if (!isLogin) {
+        req.flash("danger", "Add Project failed: Login to your account!");
+        return res.redirect("/login");
+    }
+    res.render("myProject", { isLogin, user });
 });
 
 // ROUTE DETAIL PROJECT
 app.get("/project/detail/:id", async (req, res) => {
+    const isLogin = req.session.isLogin;
+    const user = req.session.user;
     const { id } = req.params;
     const query = `SELECT * FROM projects WHERE id=${id}`;
     const obj = await sequelize.query(query, { type: QueryTypes.SELECT });
-    res.render("detailProject", { data: obj[0] });
+    res.render("detailProject", { data: obj[0], isLogin, user });
 });
 
 // ROUTE FORM ADD-PROJECT
@@ -104,6 +114,12 @@ app.post("/project", upload.single("image"), async (req, res) => {
 
 // ROUTE UPDATE PROJECT
 app.get("/project/edit/:id", async (req, res) => {
+    const isLogin = req.session.isLogin;
+    const user = req.session.user;
+    if (!isLogin) {
+        req.flash("danger", "Edit failed: Login to your account!");
+        return res.redirect("/login");
+    }
     const { id } = req.params;
     const query = `SELECT * FROM projects WHERE id=${id}`;
     const obj = await sequelize.query(query, { type: QueryTypes.SELECT });
@@ -125,7 +141,7 @@ app.get("/project/edit/:id", async (req, res) => {
         }
     });
     const checkedTech = { html: a, css: b, js: c, react: d };
-    res.render("editProject", { data: obj[0], checkedTech });
+    res.render("editProject", { data: obj[0], checkedTech, isLogin, user });
 });
 
 app.post("/project/edit", upload.single("image"), async (req, res) => {
@@ -164,6 +180,11 @@ app.post("/project/edit", upload.single("image"), async (req, res) => {
 
 // ROUTE DELETE PROJECT
 app.get("/project/delete/:id", async (req, res) => {
+    const isLogin = req.session.isLogin;
+    if (!isLogin) {
+        req.flash("danger", "Delete failed: Login to your account!");
+        return res.redirect("/login");
+    }
     const { id } = req.params;
     const query = `DELETE FROM projects WHERE id=${id}`;
     await sequelize.query(query, { type: QueryTypes.DELETE });
@@ -172,16 +193,22 @@ app.get("/project/delete/:id", async (req, res) => {
 
 // ROUTE CONTACT
 app.get("/contact", (req, res) => {
-    res.render("contact");
+    const isLogin = req.session.isLogin;
+    const user = req.session.user;
+    res.render("contact", { isLogin, user });
 });
 // ROUTE TESTIMONIALS
 app.get("/testimonials", (req, res) => {
-    res.render("testimonials");
+    const isLogin = req.session.isLogin;
+    const user = req.session.user;
+    res.render("testimonials", { isLogin, user });
 });
 
 // ROUTE REGISTER
 app.get("/register", (req, res) => {
-    res.render("register");
+    const isLogin = req.session.isLogin;
+    const user = req.session.user;
+    res.render("register", { isLogin, user });
 });
 app.post("/register", (req, res) => {
     const { name, email, password } = req.body;
@@ -199,12 +226,15 @@ app.post("/register", (req, res) => {
     });
 
     console.log("Success register");
-    res.redirect("/");
+    req.flash("success", "Register success! login to your account now");
+    res.redirect("/login");
 });
 
 // ROUTE LOGIN
 app.get("/login", (req, res) => {
-    res.render("login");
+    const isLogin = req.session.isLogin;
+    const user = req.session.user;
+    res.render("login", { isLogin, user });
 });
 app.post("/login", async (req, res) => {
     const { email, password } = req.body;
@@ -213,21 +243,24 @@ app.post("/login", async (req, res) => {
     const obj = await sequelize.query(query, { type: QueryTypes.SELECT });
     if (!obj.length) {
         console.error("user not registered!");
+        req.flash("danger", "Login failed: Email is wrong!");
         return res.redirect("/login");
     }
 
     bcrypt.compare(password, obj[0].password, (err, result) => {
         if (err) {
             console.error("Login failed: Internal server error!");
+            req.flash("danger", "Login failed: Internal server error!");
             return res.redirect("/login");
         }
         console.log("result compare password:", result);
         if (!result) {
             console.error("Password is wrong!");
+            req.flash("danger", "Login failed: Password is wrong!");
             return res.redirect("/login");
         }
         console.log("Login success! password compare success");
-        // console.log("req.session: ", req.session);
+        req.flash("success", "Login success!");
         req.session.isLogin = true;
         req.session.user = {
             name: obj[0].name,
@@ -235,6 +268,13 @@ app.post("/login", async (req, res) => {
         };
         res.redirect("/");
     });
+});
+
+// ROUTE LOGOUT
+app.get("/logout", (req, res) => {
+    req.session.isLogin = false;
+    req.flash("success", "Logout success!");
+    res.redirect("/");
 });
 
 app.listen(port, () => {
