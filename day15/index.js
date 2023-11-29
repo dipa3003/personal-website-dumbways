@@ -109,6 +109,7 @@ app.post("/project", upload.single("image"), async (req, res) => {
 
     const query = `INSERT INTO projects (title,"dateStart","dateEnd",description, technologies, image, duration) VALUES('${data.title}','${data.dateStart}','${data.dateEnd}','${data.description}',ARRAY [${tech}],'${image}','${duration}')`;
     await sequelize.query(query, { type: QueryTypes.INSERT });
+    req.flash("success", "Successfully add project!");
     res.redirect("/");
 });
 
@@ -175,6 +176,7 @@ app.post("/project/edit", upload.single("image"), async (req, res) => {
 
     const query = `UPDATE projects SET title='${data.title}',"dateStart"='${data.dateStart}',"dateEnd"='${data.dateEnd}',description='${data.description}', technologies=ARRAY [${tech}], image='${image}', duration='${duration}' WHERE id=${id}`;
     await sequelize.query(query, { type: QueryTypes.UPDATE });
+    req.flash("success", "Successfully edit project!");
     res.redirect("/");
 });
 
@@ -188,6 +190,7 @@ app.get("/project/delete/:id", async (req, res) => {
     const { id } = req.params;
     const query = `DELETE FROM projects WHERE id=${id}`;
     await sequelize.query(query, { type: QueryTypes.DELETE });
+    req.flash("success", "Successfully delete project!");
     res.redirect("/");
 });
 
