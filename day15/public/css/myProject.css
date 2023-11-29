@@ -219,7 +219,6 @@ label {
     justify-content: space-between;
 }
 .btn-card a {
-    /* width: 40%; */
     padding: 5px 20px;
     border-radius: 10px;
     cursor: pointer;
@@ -232,8 +231,7 @@ label {
     background-color: orangered;
 }
 
-/* Style Detail-Project */
-.container-detail {
+Style Detail-Project .container-detail {
     display: flex;
     flex-direction: column;
     margin: 50px 100px;
@@ -548,7 +546,7 @@ label {
         text-align: center;
         font-weight: bold;
     }
-    .humburger-navbar :nth-child(2) {
+    .humburger-navbar #project-a {
         background-color: orangered;
     }
 }

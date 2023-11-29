@@ -217,9 +217,7 @@ nav {
         display: flex;
         flex-direction: row;
     }
-    .btn-contact {
-        margin-left: 100px;
-    }
+
     .describe-detail p {
         text-align: justify;
     }
@@ -290,9 +288,7 @@ nav {
         display: flex;
         flex-direction: row;
     }
-    .btn-contact {
-        margin-left: 100px;
-    }
+
     .describe-detail p {
         text-align: justify;
     }
@@ -357,9 +353,7 @@ nav {
         display: flex;
         flex-direction: row;
     }
-    .btn-contact {
-        margin-left: 100px;
-    }
+
     .humburger-navbar {
         display: none;
     }
