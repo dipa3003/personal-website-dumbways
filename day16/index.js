@@ -7,6 +7,9 @@ const sequelize = new Sequelize(config.development);
 const bcrypt = require("bcrypt");
 const session = require("express-session");
 const flash = require("express-flash");
+const { durationProject } = require("./services/durationProject.js");
+const { listTech } = require("./services/listTech.js");
+const { modifyTech } = require("./services/checkedTech.js");
 
 // setup multer storage
 const storage = multer.diskStorage({
@@ -17,8 +20,6 @@ const storage = multer.diskStorage({
         cb(null, Date.now() + file.originalname);
     },
 });
-
-// middleware multer
 const upload = multer({ storage: storage });
 
 // setup express app
@@ -48,28 +49,26 @@ app.use(flash());
 
 // ROUTE HOME
 app.get("/", async (req, res) => {
+    const isLogin = req.session.isLogin;
+    const user = req.session.user;
+
     if (!req.session.isLogin) {
         req.flash("danger", "Login required for access Home!");
         return res.redirect("/login");
     }
     const userIsLogin = req.session.isLoginId;
-    const query = `SELECT projects.id, projects.title, projects."dateStart", projects."dateEnd", projects.description, projects.technologies, projects.image, projects.duration, users.name
-    FROM projects LEFT JOIN users ON users.id = projects.author_id WHERE projects.author_id=${userIsLogin}`;
+    const query = `SELECT p.id, p.title, p."dateStart", p."dateEnd", p.description, p.technologies, p.image, p.duration, u.name
+    FROM projects p JOIN users u ON u.id = p.author_id WHERE p.author_id=${userIsLogin}`;
 
     const obj = await sequelize.query(query, { type: QueryTypes.SELECT });
-    console.log("data obj left join: ", obj);
-
-    console.log("req.session: ", req.session);
-    const isLogin = req.session.isLogin;
-    console.log("islogin: ", isLogin);
-    const user = req.session.user;
-    console.log("data session:", user);
+    console.log("data DB JOIN home : ", obj);
     res.render("index", { dataProjects: obj, isLogin, user });
 });
 
 app.get("/project", (req, res) => {
     const isLogin = req.session.isLogin;
     const user = req.session.user;
+
     if (!isLogin) {
         req.flash("danger", "Add Project failed: Login to your account!");
         return res.redirect("/login");
@@ -82,11 +81,10 @@ app.get("/project/detail/:id", async (req, res) => {
     const isLogin = req.session.isLogin;
     const user = req.session.user;
     const { id } = req.params;
-    // const userIsLogin = req.session.isLoginId;
 
-    const query = `SELECT projects.id, projects.title, projects."dateStart", projects."dateEnd", projects.description, projects.technologies, projects.image, projects.duration, users.name
-    FROM projects LEFT JOIN users ON users.id = projects.author_id WHERE projects.id=${id}`;
-    // const query = `SELECT * FROM projects WHERE id=${id}`;
+    const query = `SELECT p.id, p.title, p."dateStart", p."dateEnd", p.description, p.technologies, p.image, p.duration, u.name
+    FROM projects p JOIN users u ON u.id = p.author_id WHERE p.id=${id}`;
+
     const obj = await sequelize.query(query, { type: QueryTypes.SELECT });
     res.render("detailProject", { data: obj[0], isLogin, user });
 });
@@ -96,30 +94,13 @@ app.post("/project", upload.single("image"), async (req, res) => {
     const author_id = req.session.user.id;
     const data = req.body;
     const image = req.file.filename;
-    console.log("image name:", image);
 
     let start = Date.parse(data.dateStart);
     let end = Date.parse(data.dateEnd);
-    let durasi = end - start;
 
-    let day = Math.floor(durasi / 1000 / 60 / 60 / 24);
-    let month = Math.floor(day / 30);
-    let year = Math.floor(month / 12);
-    const duration = year > 0 ? `${year} tahun` : month > 0 ? `${month} bulan` : `${day} hari`;
-
-    const tech = [];
-    if (data.html == "on") {
-        tech.push("'html5'");
-    }
-    if (data.css == "on") {
-        tech.push("'css3'");
-    }
-    if (data.js == "on") {
-        tech.push("'js'");
-    }
-    if (data.react == "on") {
-        tech.push("'react'");
-    }
+    // import from services folder
+    const duration = durationProject(start, end);
+    const tech = listTech(data.html, data.css, data.js, data.react);
 
     const query = `INSERT INTO projects (title,"dateStart","dateEnd",description, technologies, image, duration, author_id) VALUES('${data.title}','${data.dateStart}','${data.dateEnd}','${data.description}',ARRAY [${tech}],'${image}','${duration}', '${author_id}')`;
     await sequelize.query(query, { type: QueryTypes.INSERT });
@@ -139,23 +120,26 @@ app.get("/project/edit/:id", async (req, res) => {
     const query = `SELECT * FROM projects WHERE id=${id}`;
     const obj = await sequelize.query(query, { type: QueryTypes.SELECT });
 
-    let a;
-    let b;
-    let c;
-    let d;
+    // const technologies = obj[0].technologies
+    const checkedTech = modifyTech(obj[0].technologies);
 
-    obj[0].technologies.forEach((item) => {
-        if (item == "html5") {
-            a = "checked";
-        } else if (item == "css3") {
-            b = "checked";
-        } else if (item == "js") {
-            c = "checked";
-        } else if (item == "react") {
-            d = "checked";
-        }
-    });
-    const checkedTech = { html: a, css: b, js: c, react: d };
+    // let a;
+    // let b;
+    // let c;
+    // let d;
+
+    // obj[0].technologies.forEach((item) => {
+    //     if (item == "html5") {
+    //         a = "checked";
+    //     } else if (item == "css3") {
+    //         b = "checked";
+    //     } else if (item == "js") {
+    //         c = "checked";
+    //     } else if (item == "react") {
+    //         d = "checked";
+    //     }
+    // });
+    // const checkedTech = { html: a, css: b, js: c, react: d };
     res.render("editProject", { data: obj[0], checkedTech, isLogin, user });
 });
 
@@ -166,27 +150,10 @@ app.post("/project/edit", upload.single("image"), async (req, res) => {
 
     let start = Date.parse(data.dateStart);
     let end = Date.parse(data.dateEnd);
-    let durasi = end - start;
 
-    let day = Math.floor(durasi / 1000 / 60 / 60 / 24);
-    let month = Math.floor(day / 30);
-    let year = Math.floor(month / 12);
-    const duration = year > 0 ? `${year} tahun` : month > 0 ? `${month} bulan` : `${day} hari`;
-
-    const tech = [];
-
-    if (data.html == "on") {
-        tech.push("'html5'");
-    }
-    if (data.css == "on") {
-        tech.push("'css3'");
-    }
-    if (data.js == "on") {
-        tech.push("'js'");
-    }
-    if (data.react == "on") {
-        tech.push("'react'");
-    }
+    // import from services folder
+    const duration = durationProject(start, end);
+    const tech = listTech(data.html, data.css, data.js, data.react);
 
     const query = `UPDATE projects SET title='${data.title}',"dateStart"='${data.dateStart}',"dateEnd"='${data.dateEnd}',description='${data.description}', technologies=ARRAY [${tech}], image='${image}', duration='${duration}' WHERE id=${id}`;
     await sequelize.query(query, { type: QueryTypes.UPDATE });
