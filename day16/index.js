@@ -98,7 +98,7 @@ app.post("/project", upload.single("image"), async (req, res) => {
     let start = Date.parse(data.dateStart);
     let end = Date.parse(data.dateEnd);
 
-    // import from services folder
+    // import from services/durationProject.js
     const duration = durationProject(start, end);
     const tech = listTech(data.html, data.css, data.js, data.react);
 
@@ -120,26 +120,9 @@ app.get("/project/edit/:id", async (req, res) => {
     const query = `SELECT * FROM projects WHERE id=${id}`;
     const obj = await sequelize.query(query, { type: QueryTypes.SELECT });
 
-    // const technologies = obj[0].technologies
+    // import from services/checkedTech.js
     const checkedTech = modifyTech(obj[0].technologies);
 
-    // let a;
-    // let b;
-    // let c;
-    // let d;
-
-    // obj[0].technologies.forEach((item) => {
-    //     if (item == "html5") {
-    //         a = "checked";
-    //     } else if (item == "css3") {
-    //         b = "checked";
-    //     } else if (item == "js") {
-    //         c = "checked";
-    //     } else if (item == "react") {
-    //         d = "checked";
-    //     }
-    // });
-    // const checkedTech = { html: a, css: b, js: c, react: d };
     res.render("editProject", { data: obj[0], checkedTech, isLogin, user });
 });
 
@@ -151,7 +134,7 @@ app.post("/project/edit", upload.single("image"), async (req, res) => {
     let start = Date.parse(data.dateStart);
     let end = Date.parse(data.dateEnd);
 
-    // import from services folder
+    // import from services/durationProject.js & listTech.js
     const duration = durationProject(start, end);
     const tech = listTech(data.html, data.css, data.js, data.react);
 

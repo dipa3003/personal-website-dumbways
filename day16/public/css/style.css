@@ -39,6 +39,7 @@ nav {
 }
 .nav-list a:hover {
     color: orangered;
+    border-bottom: 1px solid orangered;
 }
 .nav-auth {
     display: flex;
@@ -95,7 +96,12 @@ nav {
 
 /* Style home */
 .home {
-    background-color: #739072;
+    /* background-color: #161b40; */
+    /* background-color: #2f2fa2; */
+    background-color: #00339b;
+
+    color: whitesmoke;
+    /* background-color: #739072; */
     margin: 50px 60px;
     border-radius: 10px;
     display: flex;
@@ -136,6 +142,8 @@ nav {
 .icons img {
     width: 30px;
     cursor: pointer;
+    background-color: lightgray;
+    border-radius: 3px;
 }
 .profil {
     background-color: #ece9e9;
