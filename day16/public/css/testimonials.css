@@ -5,12 +5,21 @@
     font-family: "Poppins", sans-serif;
 }
 body {
-    background-color: rgb(217, 226, 229);
+    /* background-color: rgb(217, 226, 229); */
+    background-color: #f7f8fa;
 }
 
 /* Style navbar */
 nav {
-    background-color: whitesmoke;
+    background-color: #161b40;
+    color: white;
+    position: fixed;
+    width: 100%;
+    top: 0;
+    z-index: 100;
+}
+.container {
+    margin-top: 100px;
 }
 .navigations {
     width: 100%;
@@ -32,7 +41,7 @@ nav {
 }
 .nav-list a {
     text-decoration: none;
-    color: black;
+    color: white;
     display: flex;
     align-items: center;
     font-weight: bold;
@@ -80,7 +89,7 @@ nav {
 .btn-navbar {
     font-weight: bold;
     letter-spacing: 1px;
-    border-radius: 10px;
+    border-radius: 50px;
     background-color: black;
     color: white;
     cursor: pointer;
@@ -106,7 +115,7 @@ nav {
     flex-wrap: wrap;
 }
 .testimonial-card {
-    background-color: whitesmoke;
+    background-color: white;
     width: 25%;
     margin: 20px;
     border-radius: 5px;

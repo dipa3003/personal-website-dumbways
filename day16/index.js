@@ -10,6 +10,8 @@ const flash = require("express-flash");
 const { durationProject } = require("./services/durationProject.js");
 const { listTech } = require("./services/listTech.js");
 const { modifyTech } = require("./services/checkedTech.js");
+const projects = require("./models").project;
+const users = require("./models").user;
 
 // setup multer storage
 const storage = multer.diskStorage({
@@ -57,10 +59,21 @@ app.get("/", async (req, res) => {
         return res.redirect("/login");
     }
     const userIsLogin = req.session.isLoginId;
-    const query = `SELECT p.id, p.title, p."dateStart", p."dateEnd", p.description, p.technologies, p.image, p.duration, u.name
-    FROM projects p JOIN users u ON u.id = p.author_id WHERE p.author_id=${userIsLogin}`;
+    // const query = `SELECT p.id, p.title, p."dateStart", p."dateEnd", p.description, p.technologies, p.image, p.duration, u.name
+    // FROM projects p JOIN users u ON u.id = p.author_id WHERE p.author_id=${userIsLogin}`;
 
-    const obj = await sequelize.query(query, { type: QueryTypes.SELECT });
+    // const obj = await sequelize.query(query, { type: QueryTypes.SELECT });
+
+    const obj = await projects.findAll({
+        where: { author_id: userIsLogin },
+        include: [
+            {
+                model: users,
+                require: true,
+            },
+        ],
+    });
+
     console.log("data DB JOIN home : ", obj);
     res.render("index", { dataProjects: obj, isLogin, user });
 });
@@ -82,10 +95,12 @@ app.get("/project/detail/:id", async (req, res) => {
     const user = req.session.user;
     const { id } = req.params;
 
-    const query = `SELECT p.id, p.title, p."dateStart", p."dateEnd", p.description, p.technologies, p.image, p.duration, u.name
-    FROM projects p JOIN users u ON u.id = p.author_id WHERE p.id=${id}`;
+    // const query = `SELECT p.id, p.title, p."dateStart", p."dateEnd", p.description, p.technologies, p.image, p.duration, u.name
+    // FROM projects p JOIN users u ON u.id = p.author_id WHERE p.id=${id}`;
 
-    const obj = await sequelize.query(query, { type: QueryTypes.SELECT });
+    const obj = await projects.findOne({ where: { id: id } });
+
+    // const obj = await sequelize.query(query, { type: QueryTypes.SELECT });
     res.render("detailProject", { data: obj[0], isLogin, user });
 });
 

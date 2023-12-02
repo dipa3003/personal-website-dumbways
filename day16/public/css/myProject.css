@@ -5,12 +5,17 @@
     font-family: "Poppins", sans-serif;
 }
 body {
-    background-color: white;
+    background-color: #f7f8fa;
 }
 
 /* Style navbar */
 nav {
-    background-color: white;
+    background-color: #161b40;
+    color: white;
+    position: fixed;
+    width: 100%;
+    top: 0;
+    z-index: 100;
 }
 .navigations {
     width: 100%;
@@ -32,7 +37,7 @@ nav {
 }
 .nav-list a {
     text-decoration: none;
-    color: black;
+    color: white;
     display: flex;
     align-items: center;
     font-weight: bold;
@@ -80,7 +85,7 @@ nav {
 .btn-navbar {
     font-weight: bold;
     letter-spacing: 1px;
-    border-radius: 10px;
+    border-radius: 50px;
     background-color: black;
     color: white;
     cursor: pointer;
@@ -100,14 +105,19 @@ nav {
     margin-bottom: 10px;
     /* background-color: #1b3c35; */
     /* background-color: #161b40; */
-    color: white;
+    color: black;
+    background-color: #f7f8fa;
 }
 .container {
     width: 500px;
     display: flex;
     flex-direction: column;
-    background-color: #065758;
-    /* margin: 50px 0; */
+    /* background-color: #065758; */
+    background-color: white;
+    margin-top: 100px;
+    margin-bottom: 50px;
+    border: 1px solid #161b40;
+    border-radius: 20px;
 }
 .title {
     display: flex;
@@ -172,9 +182,7 @@ label {
     font-weight: bold;
 }
 .container-projectList {
-    /* background-color: whitesmoke; */
-    background-color: rgb(217, 226, 229);
-
+    background-color: #f7f8fa;
     padding-bottom: 50px;
 }
 .container-cards {
@@ -188,7 +196,6 @@ label {
     background-color: lightgray;
     display: flex;
     flex-direction: column;
-    /* flex-grow: 3; */
     width: 25%;
     box-sizing: border-box;
     margin: 20px;
@@ -198,7 +205,6 @@ label {
 .image {
     height: 200px;
     margin-bottom: 8px;
-    /* object-fit: cover; */
 }
 .image img {
     width: 100%;
@@ -229,7 +235,7 @@ label {
 }
 .btn-card a {
     padding: 5px 20px;
-    border-radius: 10px;
+    border-radius: 50px;
     cursor: pointer;
     background-color: black;
     color: white;
@@ -240,7 +246,8 @@ label {
     background-color: orangered;
 }
 
-Style Detail-Project .container-detail {
+/* Style Detail-Project  */
+.container-detail {
     display: flex;
     flex-direction: column;
     margin: 50px 100px;

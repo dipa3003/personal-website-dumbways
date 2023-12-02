@@ -50,8 +50,8 @@
             <div class="humburger-navbar">
                 <a href="/">Home</a>
                 <a href="/project">Add Project</a>
-                <a href="/contact">Contact Me</a>
                 <a href="/testimonials">Testimonials</a>
+                <a href="/contact">Contact Me</a>
                 {{#if isLogin}}
                     <a href="/logout">Logout</a>
                 {{else}}
@@ -120,7 +120,7 @@
                         <div class="card-body project-title">
                             <div class="card-title">
                                 <a href="/project/detail/{{this.id}}"><h5>{{this.title}}</h5></a>
-                                <p>{{this.duration}} | By {{this.name}}</p>
+                                <p>{{this.duration}} | By {{this.user.name}}</p>
                             </div>
                             <p class="card-text">{{this.description}}</p>
                             <div class="logo">
@@ -131,7 +131,7 @@
 
                             <div class="btn-card">
                                 <a href="/project/edit/{{this.id}}" class="btn btn-primary">Edit</a>
-                                <a href="/project/delete/{{this.id}}" class="btn btn-primary" onclick="">Delete</a>
+                                <a href="/project/delete/{{this.id}}" class="btn btn-primary">Delete</a>
                             </div>
 
                         </div>

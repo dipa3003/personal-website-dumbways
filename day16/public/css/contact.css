@@ -10,7 +10,12 @@ body {
 
 /* Style navbar */
 nav {
-    background-color: whitesmoke;
+    background-color: #161b40;
+    color: white;
+    position: fixed;
+    width: 100%;
+    top: 0;
+    z-index: 100;
 }
 .navigations {
     width: 100%;
@@ -32,7 +37,7 @@ nav {
 }
 .nav-list a {
     text-decoration: none;
-    color: black;
+    color: white;
     display: flex;
     align-items: center;
     font-weight: bold;
@@ -80,7 +85,7 @@ nav {
 .btn-navbar {
     font-weight: bold;
     letter-spacing: 1px;
-    border-radius: 10px;
+    border-radius: 50px;
     background-color: black;
     color: white;
     cursor: pointer;
@@ -98,13 +103,21 @@ nav {
     display: flex;
     justify-content: center;
     /* background-color: #1b3c35; */
-    color: white;
+    background-color: #f7f8fa;
+
+    color: black;
 }
 .container {
     width: 400px;
     display: flex;
     flex-direction: column;
-    background-color: #161b40;
+    margin-top: 100px;
+    margin-bottom: 50px;
+    background-color: white;
+    border: 1px solid #161b40;
+    border-radius: 20px;
+
+    /* background-color: #161b40; */
 }
 .title {
     display: flex;
@@ -135,7 +148,7 @@ label {
     margin-bottom: 20px;
 }
 .btn-submit button {
-    border-radius: 10px;
+    border-radius: 40px;
     padding: 6px 15px;
     background-color: black;
     color: white;
