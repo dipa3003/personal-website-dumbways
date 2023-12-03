@@ -192,6 +192,9 @@ label {
     justify-content: center;
     flex-wrap: wrap;
 }
+.card-body.project-title {
+    padding-bottom: 0;
+}
 .card {
     background-color: lightgray;
     display: flex;
@@ -228,10 +231,13 @@ label {
     text-decoration: none;
     color: black;
 }
-.project-title,
+.duration-author {
+    margin-bottom: 16px;
+}
+/* .project-title,
 .content {
     margin-bottom: 10px;
-}
+} */
 .btn-card {
     display: flex;
     justify-content: space-between;
