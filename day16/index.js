@@ -58,14 +58,13 @@ app.get("/", async (req, res) => {
         req.flash("danger", "Failed to access Home page! Login to your account first.");
         return res.redirect("/login");
     }
-    const userIsLogin = req.session.isLoginId;
+    const userIsLoginId = req.session.isLoginId;
     // const query = `SELECT p.id, p.title, p."dateStart", p."dateEnd", p.description, p.technologies, p.image, p.duration, u.name
     // FROM projects p JOIN users u ON u.id = p.author_id WHERE p.author_id=${userIsLogin}`;
-
     // const obj = await sequelize.query(query, { type: QueryTypes.SELECT });
 
     const obj = await projects.findAll({
-        where: { author_id: userIsLogin },
+        where: { author_id: userIsLoginId },
         include: [
             {
                 model: users,
@@ -73,8 +72,6 @@ app.get("/", async (req, res) => {
             },
         ],
     });
-
-    console.log("data DB JOIN home : ", obj);
     res.render("index", { dataProjects: obj, isLogin, user });
 });
 
@@ -88,9 +85,9 @@ app.get("/project/detail/:id", async (req, res) => {
         req.flash("danger", "Failed to access detail project! Login to your account first.");
         return res.redirect("/login");
     }
-
     // const query = `SELECT p.id, p.title, p."dateStart", p."dateEnd", p.description, p.technologies, p.image, p.duration, u.name
     // FROM projects p JOIN users u ON u.id = p.author_id WHERE p.id=${id}`;
+    // const obj = await sequelize.query(query, { type: QueryTypes.SELECT });
 
     const obj = await projects.findOne({
         where: { id: id },
@@ -99,9 +96,7 @@ app.get("/project/detail/:id", async (req, res) => {
             require: true,
         },
     });
-    // console.log("data detail obj: ", obj);
 
-    // const obj = await sequelize.query(query, { type: QueryTypes.SELECT });
     // res.render("detailProject", { data: obj[0], isLogin, user });
     res.render("detailProject", { data: obj, isLogin, user });
 });
@@ -131,7 +126,6 @@ app.post("/project", upload.single("image"), async (req, res) => {
     // import from services/durationProject.js
     const duration = durationProject(start, end);
     const tech = listTech(data.html, data.css, data.js, data.react);
-    // console.log("listTech is: ", tech);
 
     // const query = `INSERT INTO projects (title,"dateStart","dateEnd",description, technologies, image, duration, author_id) VALUES('${data.title}','${data.dateStart}','${data.dateEnd}','${data.description}',ARRAY [${tech}],'${image}','${duration}', '${author_id}')`;
     // await sequelize.query(query, { type: QueryTypes.INSERT });
@@ -280,6 +274,7 @@ app.post("/login", async (req, res) => {
 
     const query = `SELECT * FROM users WHERE email='${email}'`;
     const obj = await sequelize.query(query, { type: QueryTypes.SELECT });
+
     if (!obj.length) {
         console.error("user not registered!");
         req.flash("danger", "Login failed: Email is wrong!");
