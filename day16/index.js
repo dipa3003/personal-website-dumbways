@@ -54,7 +54,7 @@ app.get("/", async (req, res) => {
     const isLogin = req.session.isLogin;
     const user = req.session.user;
 
-    if (!req.session.isLogin) {
+    if (!isLogin) {
         req.flash("danger", "Failed to access Home page! Login to your account first.");
         return res.redirect("/login");
     }
@@ -78,22 +78,16 @@ app.get("/", async (req, res) => {
     res.render("index", { dataProjects: obj, isLogin, user });
 });
 
-app.get("/project", (req, res) => {
-    const isLogin = req.session.isLogin;
-    const user = req.session.user;
-
-    if (!isLogin) {
-        req.flash("danger", "Failed to add project! Login to your account first.");
-        return res.redirect("/login");
-    }
-    res.render("myProject", { isLogin, user });
-});
-
 // ROUTE DETAIL PROJECT
 app.get("/project/detail/:id", async (req, res) => {
     const isLogin = req.session.isLogin;
     const user = req.session.user;
     const { id } = req.params;
+
+    if (!isLogin) {
+        req.flash("danger", "Failed to access detail project! Login to your account first.");
+        return res.redirect("/login");
+    }
 
     // const query = `SELECT p.id, p.title, p."dateStart", p."dateEnd", p.description, p.technologies, p.image, p.duration, u.name
     // FROM projects p JOIN users u ON u.id = p.author_id WHERE p.id=${id}`;
@@ -112,10 +106,21 @@ app.get("/project/detail/:id", async (req, res) => {
     res.render("detailProject", { data: obj, isLogin, user });
 });
 
-// ROUTE FORM ADD-PROJECT
+// ROUTE ADD-PROJECT
+app.get("/project", (req, res) => {
+    const isLogin = req.session.isLogin;
+    const user = req.session.user;
+
+    if (!isLogin) {
+        req.flash("danger", "Failed to add project! Login to your account first.");
+        return res.redirect("/login");
+    }
+    res.render("myProject", { isLogin, user });
+});
+
 app.post("/project", upload.single("image"), async (req, res) => {
     // const author_id = req.session.user.id;
-    const isLogin = req.session.isLoginId;
+    const isLoginId = req.session.isLoginId;
 
     const data = req.body;
     const image = req.file.filename;
@@ -139,7 +144,7 @@ app.post("/project", upload.single("image"), async (req, res) => {
         technologies: tech,
         image: `${image}`,
         duration: `${duration}`,
-        author_id: isLogin,
+        author_id: isLoginId,
     });
     console.log("ini data create model: ", cobaMap);
     req.flash("success", "Successfully add project! Check it in my projects section below.");
@@ -171,6 +176,7 @@ app.get("/project/edit/:id", async (req, res) => {
 });
 
 app.post("/project/edit", upload.single("image"), async (req, res) => {
+    const isLoginId = req.session.isLoginId;
     const { id } = req.body;
     const data = req.body;
     const image = req.file.filename;
@@ -182,8 +188,25 @@ app.post("/project/edit", upload.single("image"), async (req, res) => {
     const duration = durationProject(start, end);
     const tech = listTech(data.html, data.css, data.js, data.react);
 
-    const query = `UPDATE projects SET title='${data.title}',"dateStart"='${data.dateStart}',"dateEnd"='${data.dateEnd}',description='${data.description}', technologies=ARRAY [${tech}], image='${image}', duration='${duration}' WHERE id=${id}`;
-    await sequelize.query(query, { type: QueryTypes.UPDATE });
+    // const query = `UPDATE projects SET title='${data.title}',"dateStart"='${data.dateStart}',"dateEnd"='${data.dateEnd}',description='${data.description}', technologies=ARRAY [${tech}], image='${image}', duration='${duration}' WHERE id=${id}`;
+    // await sequelize.query(query, { type: QueryTypes.UPDATE });
+
+    await projects.update(
+        {
+            title: `${data.title}`,
+            dateStart: `${data.dateStart}`,
+            dateEnd: `${data.dateEnd}`,
+            description: `${data.description}`,
+            technologies: tech,
+            image: `${image}`,
+            duration: `${duration}`,
+            author_id: isLoginId,
+        },
+        {
+            where: { id: id },
+        }
+    );
+
     req.flash("success", "Successfully edit project!");
     res.redirect("/");
 });
@@ -191,13 +214,18 @@ app.post("/project/edit", upload.single("image"), async (req, res) => {
 // ROUTE DELETE PROJECT
 app.get("/project/delete/:id", async (req, res) => {
     const isLogin = req.session.isLogin;
+    const { id } = req.params;
+
     if (!isLogin) {
         req.flash("danger", "Delete failed: Login to your account!");
         return res.redirect("/login");
     }
-    const { id } = req.params;
-    const query = `DELETE FROM projects WHERE id=${id}`;
-    await sequelize.query(query, { type: QueryTypes.DELETE });
+    // const query = `DELETE FROM projects WHERE id=${id}`;
+    // await sequelize.query(query, { type: QueryTypes.DELETE });
+
+    await projects.destroy({
+        where: { id: id },
+    });
     req.flash("success", "Successfully delete project!");
     res.redirect("/");
 });
