@@ -2,7 +2,7 @@ const express = require("express");
 const path = require("path");
 const multer = require("multer");
 const config = require("./config/config.json");
-const { Sequelize, QueryTypes } = require("sequelize");
+const { Sequelize, QueryTypes, ARRAY } = require("sequelize");
 const sequelize = new Sequelize(config.development);
 const bcrypt = require("bcrypt");
 const session = require("express-session");
@@ -55,7 +55,7 @@ app.get("/", async (req, res) => {
     const user = req.session.user;
 
     if (!req.session.isLogin) {
-        req.flash("danger", "Login required for access Home!");
+        req.flash("danger", "Failed to access Home page! Login to your account first.");
         return res.redirect("/login");
     }
     const userIsLogin = req.session.isLoginId;
@@ -83,7 +83,7 @@ app.get("/project", (req, res) => {
     const user = req.session.user;
 
     if (!isLogin) {
-        req.flash("danger", "Add Project failed: Login to your account!");
+        req.flash("danger", "Failed to add project! Login to your account first.");
         return res.redirect("/login");
     }
     res.render("myProject", { isLogin, user });
@@ -98,15 +98,25 @@ app.get("/project/detail/:id", async (req, res) => {
     // const query = `SELECT p.id, p.title, p."dateStart", p."dateEnd", p.description, p.technologies, p.image, p.duration, u.name
     // FROM projects p JOIN users u ON u.id = p.author_id WHERE p.id=${id}`;
 
-    const obj = await projects.findOne({ where: { id: id } });
+    const obj = await projects.findOne({
+        where: { id: id },
+        include: {
+            model: users,
+            require: true,
+        },
+    });
+    // console.log("data detail obj: ", obj);
 
     // const obj = await sequelize.query(query, { type: QueryTypes.SELECT });
-    res.render("detailProject", { data: obj[0], isLogin, user });
+    // res.render("detailProject", { data: obj[0], isLogin, user });
+    res.render("detailProject", { data: obj, isLogin, user });
 });
 
 // ROUTE FORM ADD-PROJECT
 app.post("/project", upload.single("image"), async (req, res) => {
-    const author_id = req.session.user.id;
+    // const author_id = req.session.user.id;
+    const isLogin = req.session.isLoginId;
+
     const data = req.body;
     const image = req.file.filename;
 
@@ -116,10 +126,23 @@ app.post("/project", upload.single("image"), async (req, res) => {
     // import from services/durationProject.js
     const duration = durationProject(start, end);
     const tech = listTech(data.html, data.css, data.js, data.react);
+    // console.log("listTech is: ", tech);
 
-    const query = `INSERT INTO projects (title,"dateStart","dateEnd",description, technologies, image, duration, author_id) VALUES('${data.title}','${data.dateStart}','${data.dateEnd}','${data.description}',ARRAY [${tech}],'${image}','${duration}', '${author_id}')`;
-    await sequelize.query(query, { type: QueryTypes.INSERT });
-    req.flash("success", "Successfully add project!");
+    // const query = `INSERT INTO projects (title,"dateStart","dateEnd",description, technologies, image, duration, author_id) VALUES('${data.title}','${data.dateStart}','${data.dateEnd}','${data.description}',ARRAY [${tech}],'${image}','${duration}', '${author_id}')`;
+    // await sequelize.query(query, { type: QueryTypes.INSERT });
+
+    const cobaMap = await projects.create({
+        title: `${data.title}`,
+        dateStart: `${data.dateStart}`,
+        dateEnd: `${data.dateEnd}`,
+        description: `${data.description}`,
+        technologies: tech,
+        image: `${image}`,
+        duration: `${duration}`,
+        author_id: isLogin,
+    });
+    console.log("ini data create model: ", cobaMap);
+    req.flash("success", "Successfully add project! Check it in my projects section below.");
     res.redirect("/");
 });
 
@@ -132,13 +155,19 @@ app.get("/project/edit/:id", async (req, res) => {
         return res.redirect("/login");
     }
     const { id } = req.params;
-    const query = `SELECT * FROM projects WHERE id=${id}`;
-    const obj = await sequelize.query(query, { type: QueryTypes.SELECT });
+    // const query = `SELECT * FROM projects WHERE id=${id}`;
+    // const obj = await sequelize.query(query, { type: QueryTypes.SELECT });
+    const obj = await projects.findOne({
+        where: { id: id },
+    });
+    console.log("obj update is: ", obj);
 
     // import from services/checkedTech.js
-    const checkedTech = modifyTech(obj[0].technologies);
+    // const checkedTech = modifyTech(obj[0].technologies);
+    const checkedTech = modifyTech(obj.technologies);
 
-    res.render("editProject", { data: obj[0], checkedTech, isLogin, user });
+    // res.render("editProject", { data: obj[0], checkedTech, isLogin, user });
+    res.render("editProject", { data: obj, checkedTech, isLogin, user });
 });
 
 app.post("/project/edit", upload.single("image"), async (req, res) => {
@@ -208,7 +237,7 @@ app.post("/register", (req, res) => {
     });
 
     console.log("Success register");
-    req.flash("success", "Register success! login to your account now");
+    req.flash("success", "Registration success! Login to your account now.");
     res.redirect("/login");
 });
 
@@ -242,7 +271,7 @@ app.post("/login", async (req, res) => {
             return res.redirect("/login");
         }
         console.log("Login success! password compare success");
-        req.flash("success", "Login success!");
+        req.flash("success", "Login success! Manage your project now.");
         req.session.isLogin = true;
         req.session.isLoginId = obj[0].id;
         req.session.user = {

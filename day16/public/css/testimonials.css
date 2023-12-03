@@ -165,7 +165,7 @@ nav {
 }
 
 /* Responsinve Large devices (laptop/desktop, 769px and up) */
-@media only screen and (min-width: 769px) {
+/* @media only screen and (min-width: 769px) {
     .main-navbar {
         display: flex;
         flex-direction: row;
@@ -182,7 +182,7 @@ nav {
     .humburger-navbar {
         display: none;
     }
-}
+} */
 
 /* Responsive small devices (portrait tablet, larger phones, 600px - 768px) */
 @media only screen and (max-width: 992px) {
@@ -233,7 +233,7 @@ nav {
         text-align: center;
         font-weight: bold;
     }
-    .humburger-navbar :nth-child(4) {
+    .humburger-navbar :nth-child(3) {
         background-color: orangered;
     }
 }

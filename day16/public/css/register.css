@@ -144,7 +144,7 @@ label {
 }
 
 /* Responsive extra large devices (993px and up) */
-@media only screen and (min-width: 993px) {
+@media only screen and (min-width: 992px) {
     .main-navbar {
         display: flex;
         flex-direction: row;

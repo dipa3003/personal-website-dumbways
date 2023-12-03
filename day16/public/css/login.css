@@ -145,7 +145,7 @@ label {
 }
 
 /* Responsive extra large devices (993px and up) */
-@media only screen and (min-width: 993px) {
+@media only screen and (min-width: 992px) {
     .main-navbar {
         display: flex;
         flex-direction: row;
@@ -155,9 +155,6 @@ label {
         display: flex;
         flex-direction: row;
     }
-    /* .btn-contact {
-        margin-left: 100px;
-    } */
     .describe-detail p {
         text-align: justify;
     }

@@ -197,6 +197,12 @@ label {
 
 /* Responsinve Large devices (laptop/desktop, 769px and 992px) */
 @media only screen and (max-width: 992px) {
+    .container {
+        margin: 120px;
+    }
+    .form {
+        margin: 0 10px;
+    }
     /* styling card list */
     .container-cards {
         margin: 20px;
@@ -253,6 +259,12 @@ label {
 
 /* Responsive medium devices (portrait tablet, larger phones, 768px andn up) */
 @media only screen and (max-width: 768px) {
+    .container {
+        margin: 150px;
+    }
+    .form {
+        margin: 0 10px;
+    }
     /* styling card list */
     .container-cards {
         margin: 20px;
@@ -312,7 +324,7 @@ label {
         margin: 0 10px;
     }
     .container {
-        margin: 20px;
+        margin: 100px;
     }
     .container-date {
         display: flex;
@@ -387,7 +399,7 @@ label {
         text-align: center;
         font-weight: bold;
     }
-    .humburger-navbar :nth-child(3) {
+    .humburger-navbar :nth-child(4) {
         background-color: orangered;
     }
 }

@@ -62,8 +62,9 @@
         </nav>
 
         {{#if messages.success}}
-            <div class="alert alert-success" role="alert">
+            <div class="alert alert-success alert-dismissible fade show" role="alert">
                 {{messages.success}}
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
             </div>
 
         {{/if}}
@@ -124,7 +125,7 @@
                             </div>
                             <p class="card-text">{{this.description}}</p>
                             <div class="logo">
-                                {{#each technologies}}
+                                {{#each this.technologies}}
                                     <i class="fa-brands fa-{{this}} fa-2xl"></i>
                                 {{/each}}
                             </div>
